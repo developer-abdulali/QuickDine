@@ -7,3 +7,4 @@ const generateToken = (id: string) => {
 };
 
 export default generateToken;
+  
