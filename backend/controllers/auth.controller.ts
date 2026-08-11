@@ -3,7 +3,8 @@ import bcrypt from "bcrypt";
 import { User } from "../models/user.model.js";
 import generateToken from "../utils/generateToken.js";
 
-// Register a new user (/api/auth/register)
+// Register a new user
+// POST /api/auth/register
 export const registerUser = async (
   req: Request,
   res: Response,
@@ -57,7 +58,8 @@ export const registerUser = async (
   }
 };
 
-// Login user (/api/auth/login)
+// Login user
+// POST /api/auth/login
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
@@ -98,7 +100,8 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-// Get user profile (/api/auth/me) @private access
+// Get user profile
+// GET /api/auth/me with private access
 export const getUserProfile = async (
   req: Request,
   res: Response,

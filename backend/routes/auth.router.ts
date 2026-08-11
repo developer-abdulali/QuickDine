@@ -10,6 +10,6 @@ const authRouter = Router();
 
 authRouter.post("/register", registerUser);
 authRouter.post("/login", loginUser);
-authRouter.post("/me", protect, getUserProfile);
+authRouter.get("/me", protect, getUserProfile);
 
 export default authRouter;

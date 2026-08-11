@@ -3,6 +3,9 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import authRouter from "./routes/auth.router.js";
+import restaurantRouter from "./routes/restaurant.router.js";
+import bookingRouter from "./routes/booking.router.js";
+import ownerRouter from "./routes/owner.router.js";
 
 const app = express();
 
@@ -20,6 +23,10 @@ app.get("/", (req: Request, res: Response) => {
 
 // API routes
 app.use("/api/auth", authRouter);
+app.use("/api/restaurant", restaurantRouter);
+app.use("/api/bookings", bookingRouter);
+app.use("/api/bookings", bookingRouter);
+app.use("/api/owner", ownerRouter);
 
 // Global error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
