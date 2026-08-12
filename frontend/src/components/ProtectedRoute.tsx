@@ -2,6 +2,7 @@ import {ShieldAlert} from "lucide-react";
 import {useAppContext} from "../context/AppContext.tsx";
 import AuthModal from "./AuthModal.tsx";
 import Loader from "./Loader.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface ProtectedRouteProps {
     children: React.ReactNode;
@@ -10,6 +11,9 @@ interface ProtectedRouteProps {
 
 export default function ProtectedRoute({children, allowedRoles} : ProtectedRouteProps) {
     const {isAuthenticated, user, loading, setAuthModalOpen} = useAppContext();
+
+    const navigate = useNavigate();
+
 
     if (loading) {
         return <Loader text="Loading Panel Access..."/>;
@@ -50,6 +54,12 @@ export default function ProtectedRoute({children, allowedRoles} : ProtectedRoute
                     <p className="text-sm text-black/55 mb-8 leading-relaxed">
                         You do not have the required permissions to access this dashboard.
                     </p>
+                    <button onClick={
+                            () => navigate(-1)
+                        }
+                        className="flex-1 border border-outline-variant/50 py-3 text-xs font-medium tracking-widest uppercase text-primary hover:border-primary transition-colors cursor-pointer">
+                        Go Back
+                    </button>
                 </div>
             </div>
         );

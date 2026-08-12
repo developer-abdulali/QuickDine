@@ -9,13 +9,18 @@ import bookingRouter from "./routes/booking.router.js";
 import ownerRouter from "./routes/owner.router.js";
 import restaurantRouter from "./routes/restaurant.router.js";
 
-const app = express();
 
-await connectDB();
+const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Ensure Database is connected per request on serverless
+app.use(async (req: Request, res: Response, next: NextFunction) => {
+  await connectDB();
+  next();
+});
 
 const port = process.env.PORT || 8080;
 
@@ -32,13 +37,18 @@ app.use("/api/admin", adminRouter);
 
 // Global error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error("Unhandle Error:", err);
+  console.error("Unhandled Error:", err);
   res.status(500).json({
     message: err.message || "Internal Server Error",
     stack: process.env.NODE_ENV === "production" ? undefined : err.stack,
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+  });
+}
+
+export default app;
+
