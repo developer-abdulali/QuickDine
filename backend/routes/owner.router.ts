@@ -16,7 +16,7 @@ ownerRouter.use(ownerOnly);
 
 ownerRouter.get("/restaurant", getOwnerRestaurant);
 ownerRouter.post("/restaurant", upload.single("image"), createOwnerRestaurant);
-ownerRouter.put("/restaurant", upload.single("image"), updateOwnerRestaurant);
+ownerRouter.put("/restaurant/:id", upload.single("image"), updateOwnerRestaurant);
 
 ownerRouter.get("/bookings", getOwnerBookings);
 ownerRouter.put("/bookings/:id/status", updateBookingStatus);

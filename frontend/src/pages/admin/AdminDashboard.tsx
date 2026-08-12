@@ -4,30 +4,113 @@ import Navbar from "../../components/Navbar.tsx";
 import Footer from "../../components/Footer.tsx";
 import Loader from "../../components/Loader.tsx";
 import { useAppContext } from "../../context/AppContext.tsx";
-import { ShieldCheckIcon, CheckCircleIcon, BarChart3Icon } from "lucide-react";
+import { ShieldCheckIcon, CheckCircleIcon, BarChart3Icon, UsersIcon } from "lucide-react";
+import toast from "react-hot-toast";
+import api from "../../lib/api.ts";
 
 // Subcomponents
 import AdminApprovals from "../../components/admin/AdminApprovals.tsx";
 import AdminStats from "../../components/admin/AdminStats.tsx";
-import { dummyAdminStats, dummyRestaurant } from "../../assets/assets.ts";
+import AdminUsers from "../../components/admin/AdminUsers.tsx";
 
 export default function AdminDashboard() {
     const { logout } = useAppContext();
     const [restaurants, setRestaurants] = useState<any[]>([]);
     const [stats, setStats] = useState<any>(null);
+    const [users, setUsers] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState<"approvals" | "stats">("approvals");
+    const [activeTab, setActiveTab] = useState<"approvals" | "stats" | "users">("approvals");
     const [btnLoading, setBtnLoading] = useState<string | null>(null);
 
-    const fetchAdminData = async () => {
-        setRestaurants(dummyRestaurant);
-        setStats(dummyAdminStats);
-        setLoading(false);
+    const fetchRestaurants = async () => {
+        const res = await api.get("/admin/restaurants").catch(() => ({ data: [] }));
+        setRestaurants(res.data ?? []);
     };
 
-    const handleApproveStatus = async (restaurantId: string, status: "approved" | "rejected") => {
-        console.log(restaurantId, status);
-        setBtnLoading(null);
+    const fetchStats = async () => {
+        const res = await api.get("/admin/stats").catch(() => ({ data: null }));
+        setStats(res.data);
+    };
+
+    const fetchUsers = async () => {
+        const res = await api.get("/admin/users").catch(() => ({ data: [] }));
+        setUsers(res.data ?? []);
+    };
+
+    const fetchAdminData = async () => {
+        try {
+            await Promise.all([fetchRestaurants(), fetchStats(), fetchUsers()]);
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.response?.data?.message || "Failed to load admin data");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleApproveStatus = async (
+        restaurantId: string,
+        status: "approved" | "rejected",
+    ): Promise<void> => {
+        setBtnLoading(restaurantId);
+        try {
+            await api.put(`/admin/restaurants/${restaurantId}/approve`, { status });
+            toast.success(`Restaurant ${status === "approved" ? "approved" : "rejected"} successfully`);
+            await Promise.all([fetchRestaurants(), fetchStats()]);
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.response?.data?.message || "Failed to update restaurant status");
+        } finally {
+            setBtnLoading(null);
+        }
+    };
+
+    const handleDeleteRestaurant = async (restaurantId: string): Promise<void> => {
+        if (!window.confirm("Delete this restaurant and all its bookings?")) return;
+        setBtnLoading(`rdel-${restaurantId}`);
+        try {
+            await api.delete(`/admin/restaurants/${restaurantId}`);
+            toast.success("Restaurant deleted successfully");
+            await Promise.all([fetchRestaurants(), fetchStats()]);
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.response?.data?.message || "Failed to delete restaurant");
+        } finally {
+            setBtnLoading(null);
+        }
+    };
+
+    const handleRoleChange = async (
+        userId: string,
+        role: "user" | "owner" | "admin",
+    ): Promise<void> => {
+        setBtnLoading(`role-${userId}`);
+        try {
+            await api.put(`/admin/users/${userId}/role`, { role });
+            toast.success("User role updated successfully");
+            setUsers((prev) => prev.map((u) => (u._id === userId ? { ...u, role } : u)));
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.response?.data?.message || "Failed to update user role");
+        } finally {
+            setBtnLoading(null);
+        }
+    };
+
+    const handleDeleteUser = async (userId: string): Promise<void> => {
+        if (!window.confirm("Delete this user and all their bookings/restaurants?")) return;
+        setBtnLoading(`del-${userId}`);
+        try {
+            await api.delete(`/admin/users/${userId}`);
+            toast.success("User deleted successfully");
+            setUsers((prev) => prev.filter((u) => u._id !== userId));
+            await Promise.all([fetchRestaurants(), fetchStats()]);
+        } catch (error: any) {
+            console.error(error);
+            toast.error(error?.response?.data?.message || "Failed to delete user");
+        } finally {
+            setBtnLoading(null);
+        }
     };
 
     useEffect(() => {
@@ -87,6 +170,15 @@ export default function AdminDashboard() {
                                 <BarChart3Icon size={14} />
                                 Analytics & Stats
                             </button>
+                            <button
+                                onClick={() => setActiveTab("users")}
+                                className={`w-full flex items-center gap-3 px-4 py-3 text-xs font-medium tracking-wider uppercase text-left rounded-sm cursor-pointer transition-colors ${
+                                    activeTab === "users" ? "bg-primary text-white" : "text-black/55 hover:bg-surface"
+                                }`}
+                            >
+                                <UsersIcon size={14} />
+                                Users Control ({users.length})
+                            </button>
                         </nav>
                     </aside>
 
@@ -99,11 +191,22 @@ export default function AdminDashboard() {
                                 otherRestaurants={otherRestaurants}
                                 btnLoading={btnLoading}
                                 onApproveStatus={handleApproveStatus}
+                                onDeleteRestaurant={handleDeleteRestaurant}
                             />
                         )}
 
                         {/* Tab 2: Analytics & Stats */}
                         {activeTab === "stats" && stats && <AdminStats stats={stats} />}
+
+                        {/* Tab 3: Users Control */}
+                        {activeTab === "users" && (
+                            <AdminUsers
+                                users={users}
+                                btnLoading={btnLoading}
+                                onRoleChange={handleRoleChange}
+                                onDeleteUser={handleDeleteUser}
+                            />
+                        )}
                     </div>
                 </div>
             </main>

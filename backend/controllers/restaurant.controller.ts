@@ -85,57 +85,65 @@ export const getRestaurantBySlug = async (
   res: Response,
 ): Promise<void> => {
   try {
-    const restaurant = await Restaurant.findOne({ slug: req.params.slug });
+    const restaurant = await Restaurant.findOne({
+      slug: req.params.slug,
+    });
 
     if (!restaurant) {
-      res.status(404).json({ message: "Restaurant not found" });
+      res.status(404).json({
+        message: "Restaurant not found",
+      });
       return;
     }
 
-    // If not approved, verify authorization (owner or admin)
-    if (restaurant.status !== "approved") {
-      let isAuthorized = false;
-      if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith("Bearer")
-      ) {
-        try {
-          const token = req.headers.authorization.split(" ")[1];
-          const decoded = jwt.verify(
-            token,
-            process.env.JSON_SECRET as string,
-          ) as { id: string };
-
-          const user = await User.findById(decoded.id);
-          if (
-            (user && user.role === "admin") ||
-            (user?.role === "owner" &&
-              restaurant.owner.toString() === user?._id.toString())
-          ) {
-            isAuthorized = true;
-          }
-        } catch (err) {
-          // Ignore token verify error
-        }
-      }
-
-      if (!isAuthorized) {
-        res
-          .status(404)
-          .json({ message: "Restaurant not found ro pending approval" });
-        return;
-      }
-
+    // Approved restaurant -> public access
+    if (restaurant.status === "approved") {
       res.json(restaurant);
+      return;
     }
+
+    // Pending restaurants -> owner/admin only
+    let isAuthorized = false;
+
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith("Bearer ")
+    ) {
+      try {
+        const token = req.headers.authorization.split(" ")[1];
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
+          id: string;
+        };
+
+        const user = await User.findById(decoded.id);
+
+        if (
+          (user && user.role === "admin") ||
+          (user?.role === "owner" &&
+            restaurant.owner.toString() === user._id.toString())
+        ) {
+          isAuthorized = true;
+        }
+      } catch (err) {}
+    }
+
+    if (!isAuthorized) {
+      res.status(404).json({
+        message: "Restaurant pending approval",
+      });
+      return;
+    }
+
+    res.json(restaurant);
   } catch (error: any) {
-    console.error("Error getting a restaurant", error);
-    res.status(400).json({
+    console.error(error);
+
+    res.status(500).json({
       message: error.message || "Internal server error",
     });
   }
 };
-
 // Get dynamic seat availability for slots
 // GET /api/restaurants/:id/availability
 export const getRestaurantAvailability = async (
@@ -157,17 +165,19 @@ export const getRestaurantAvailability = async (
       return;
     }
 
-    const bookingDate = new Date(date as string);
+    const startOfDay = new Date(date as string);
+    const endOfDay = new Date(startOfDay);
+    endOfDay.setUTCDate(endOfDay.getUTCDate() + 1);
 
-    // Get all avtive bookings on this date for the restaurant
+    // Get all active bookings on this date for the restaurant
     const bookings = await Booking.find({
       restaurant: restaurant._id,
-      date: bookingDate,
+      date: { $gte: startOfDay, $lt: endOfDay },
       status: "confirmed",
     });
 
     // Map slots to available capacities
-    const availablity = restaurant.availableSlots.map((slot) => {
+    const availability = restaurant.availableSlots.map((slot) => {
       const bookedSeats = bookings
         .filter((b) => b.time === slot)
         .reduce((sum, b) => sum + b.guests, 0);
@@ -176,13 +186,13 @@ export const getRestaurantAvailability = async (
       const availableSeats = Math.max(0, totalSeats - bookedSeats);
 
       return {
-        times: slot,
+        time: slot,
         availableSeats,
         isAvailable: availableSeats > 0,
       };
     });
 
-    res.json(availablity);
+    res.json(availability);
   } catch (error: any) {
     console.error(error);
     res.status(400).json({

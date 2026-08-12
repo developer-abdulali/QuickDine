@@ -22,7 +22,7 @@ export const protect = async (
       token = req.headers.authorization.split(" ")[1];
 
       // Verify token
-      const decode = jwt.verify(token, process.env.JSON_SECRET!) as {
+      const decode = jwt.verify(token, process.env.JWT_SECRET!) as {
         id: string;
       };
 

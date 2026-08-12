@@ -34,8 +34,8 @@ export const registerUser = async (
       name,
       email,
       password: hashedPass,
-      phone,
-      role,
+      ...(phone && { phone }),
+      ...(role && { role }),
     });
 
     if (user) {

@@ -54,17 +54,17 @@ export const footerSections = [
     {
         title: "COMPANY",
         links: [
-            { label: "About Us", path: "#" },
-            { label: "Partner with Us", path: "#" },
-            { label: "Careers", path: "#" },
+            { label: "About Us", path: "/about" },
+            { label: "Partner with Us", path: "/partner" },
+            { label: "Careers", path: "/careers" },
         ],
     },
     {
         title: "LEGAL",
         links: [
-            { label: "Terms of Service", path: "#" },
-            { label: "Privacy Policy", path: "#" },
-            { label: "Cookies", path: "#" },
+            { label: "Terms of Service", path: "/terms" },
+            { label: "Privacy Policy", path: "/privacy" },
+            { label: "Cookies", path: "/cookies" },
         ],
     },
 ];
@@ -76,8 +76,8 @@ export const socialLinks = [
 ];
 
 export const bottomLinks = [
-    { label: "Terms", path: "#" },
-    { label: "Privacy", path: "#" },
+    { label: "Terms", path: "/terms" },
+    { label: "Privacy", path: "/privacy" },
 ];
 
 export const cuisines = [

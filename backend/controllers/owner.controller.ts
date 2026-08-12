@@ -4,20 +4,17 @@ import { Restaurant } from "../models/restaurant.model.js";
 import uploadToCloudinary from "../config/cloudinary.js";
 import { Booking } from "../models/bookings.model.js";
 
-// Get owner's restaurant
+// Get owner's restaurants
 // GET /api/owner/restaurant
 export const getOwnerRestaurant = async (
   req: AuthRequest,
   res: Response,
 ): Promise<void> => {
   try {
-    const restaurant = await Restaurant.findOne({ owner: req.user?._id });
-    if (!restaurant) {
-      res.status(200).json(null);
-      return;
-    }
-
-    res.json(restaurant);
+    const restaurants = await Restaurant.find({ owner: req.user?._id }).sort({
+      createdAt: -1,
+    });
+    res.json(restaurants);
   } catch (error: any) {
     console.error(error);
     res.status(400).json({
@@ -33,14 +30,6 @@ export const createOwnerRestaurant = async (
   res: Response,
 ): Promise<void> => {
   try {
-    const existing = await Restaurant.findOne({ owner: req.user?._id });
-    if (!existing) {
-      res
-        .status(400)
-        .json({ message: "You already have a restaurant registered" });
-      return;
-    }
-
     const {
       name,
       description,
@@ -84,9 +73,13 @@ export const createOwnerRestaurant = async (
     // Handle image
     let imageUrl = "";
     if (req.file) {
-      const result = await uploadToCloudinary(req.file.buffer);
-      // @ts-ignore
-      imageUrl = result.secure_url;
+      try {
+        const result = await uploadToCloudinary(req.file.buffer);
+        // @ts-ignore
+        imageUrl = result.secure_url;
+      } catch (uploadError: any) {
+        console.error("Image upload failed", uploadError);
+      }
     }
 
     // Setup parsed tags and slots
@@ -127,13 +120,16 @@ export const createOwnerRestaurant = async (
 };
 
 // Update owner's restaurant
-// PUT /api/owner/restaurant
+// PUT /api/owner/restaurant/:id
 export const updateOwnerRestaurant = async (
   req: AuthRequest,
   res: Response,
 ): Promise<void> => {
   try {
-    const restaurant = await Restaurant.findOne({ owner: req.user?._id });
+    const restaurant = await Restaurant.findOne({
+      _id: req.params.id,
+      owner: req.user?._id,
+    });
     if (!restaurant) {
       res.status(404).json({ message: "Restaurant profile not found" });
       return;
@@ -175,9 +171,13 @@ export const updateOwnerRestaurant = async (
 
     // Handle image
     if (req.file) {
-      const result = await uploadToCloudinary(req.file.buffer);
-      // @ts-ignore
-      imageUrl = result.secure_url;
+      try {
+        const result = await uploadToCloudinary(req.file.buffer);
+        // @ts-ignore
+        restaurant.image = result.secure_url;
+      } catch (uploadError: any) {
+        console.error("Image upload failed", uploadError);
+      }
     }
 
     const updated = await restaurant.save();
@@ -190,21 +190,21 @@ export const updateOwnerRestaurant = async (
   }
 };
 
-// Get bookings for owner's restaurant
+// Get bookings for all owner's restaurants
 // GET /api/owner/bookings
 export const getOwnerBookings = async (
   req: AuthRequest,
   res: Response,
 ): Promise<void> => {
   try {
-    const restaurant = await Restaurant.findOne({ owner: req.user?._id });
-    if (!restaurant) {
-      res.status(404).json({ message: "Restaurant profile not found" });
-      return;
-    }
+    const restaurants = await Restaurant.find({ owner: req.user?._id });
+    const restaurantIds = restaurants.map((r) => r._id);
 
-    const bookings = await Booking.find({ restaurant: restaurant._id })
+const bookings = await Booking.find({
+      restaurant: { $in: restaurantIds },
+    })
       .populate("user", "name email phone")
+      .populate("restaurant", "name location image slug status")
       .sort({ date: -1, time: -1 });
 
     res.json(bookings);

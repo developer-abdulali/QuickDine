@@ -6,6 +6,12 @@ import BookingConfirmation from "./pages/BookingConfirmation.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import OwnerDashboard from "./pages/owner/OwnerDashboard.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import About from "./pages/About.tsx";
+import Partner from "./pages/Partner.tsx";
+import Careers from "./pages/Careers.tsx";
+import Terms from "./pages/Terms.tsx";
+import Privacy from "./pages/Privacy.tsx";
+import Cookies from "./pages/Cookies.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import { Toaster } from "react-hot-toast";
 
@@ -30,6 +36,12 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/restaurant/:slug" element={<RestaurantDetail />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/partner" element={<Partner />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/cookies" element={<Cookies />} />
                 <Route 
                     path="/booking/:slug" 
                     element={
