@@ -57,7 +57,7 @@ export default function ProtectedRoute({children, allowedRoles} : ProtectedRoute
                     <button onClick={
                             () => navigate(-1)
                         }
-                        className="flex-1 border border-outline-variant/50 py-3 text-xs font-medium tracking-widest uppercase text-primary hover:border-primary transition-colors cursor-pointer">
+                        className="bg-primary text-on-primary text-xs tracking-widest uppercase px-8 py-4 md:py-3 hover:bg-secondary hover:text-white transition-soft cursor-pointer">
                         Go Back
                     </button>
                 </div>
