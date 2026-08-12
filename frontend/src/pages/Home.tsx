@@ -4,9 +4,14 @@ import toast from "react-hot-toast";
 import AuthModal from "../components/AuthModal.tsx";
 import Footer from "../components/Footer.tsx";
 import CuisineBrowse from "../components/home/CuisineBrowse.tsx";
+import ExclusiveTables from "../components/home/ExclusiveTables.tsx";
 import Hero from "../components/home/Hero.tsx";
+import HowItWorks from "../components/home/HowItWorks.tsx";
 import MembershipSection from "../components/home/MembershipSection.tsx";
 import NewsletterCTA from "../components/home/NewsletterCTA.tsx";
+import PartnerCTA from "../components/home/PartnerCTA.tsx";
+import StatsBar from "../components/home/StatsBar.tsx";
+import Testimonials from "../components/home/Testimonials.tsx";
 import TrendingRow from "../components/home/TrendingRow.tsx";
 import Navbar from "../components/Navbar.tsx";
 import api from "../lib/api.ts";
@@ -36,9 +41,14 @@ export default function Home() {
       <AuthModal />
       <main className="flex-1">
         <Hero />
+        <StatsBar />
         <CuisineBrowse />
+        <HowItWorks />
         <TrendingRow trending={trending} loading={loading} />
+        <ExclusiveTables exclusiveRestaurants={trending.slice(3)} />
+        <Testimonials />
         <MembershipSection />
+        <PartnerCTA />
         <NewsletterCTA />
       </main>
       <Footer />

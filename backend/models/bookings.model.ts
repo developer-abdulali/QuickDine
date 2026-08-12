@@ -1,5 +1,5 @@
-import { Document, model, Schema, Types } from "mongoose";
 import crypto from "crypto";
+import { Document, model, Schema, Types } from "mongoose";
 
 export interface IBooking extends Document {
   user: Types.ObjectId;

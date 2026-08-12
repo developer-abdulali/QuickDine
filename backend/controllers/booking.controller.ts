@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { AuthRequest } from "../middlewares/auth.middleware.js";
-import { Restaurant } from "../models/restaurant.model.js";
 import { Booking } from "../models/bookings.model.js";
+import { Restaurant } from "../models/restaurant.model.js";
 
 // Create a new booking
 // POST /api/bookings with private access

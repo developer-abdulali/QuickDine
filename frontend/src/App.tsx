@@ -13,11 +13,15 @@ import Terms from "./pages/Terms.tsx";
 import Privacy from "./pages/Privacy.tsx";
 import Cookies from "./pages/Cookies.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
+import GoToTopButton from "./components/GoToTopButton.tsx";
 import { Toaster } from "react-hot-toast";
 
 export default function App() {
     return (
         <>
+            <ScrollToTop />
+            <GoToTopButton />
             <Toaster 
                 position="bottom-right"
                 toastOptions={{

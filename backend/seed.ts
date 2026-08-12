@@ -22,16 +22,16 @@ const seedData = async () => {
 
     const salt = await bcrypt.genSalt(10);
 
-    const adminPassword = await bcrypt.hash("admin123", salt);
+    const adminPassword = await bcrypt.hash("Ali@1122", salt);
     const userPassword = await bcrypt.hash("user123", salt);
     const ownerPassword = await bcrypt.hash("owner123", salt);
 
     // Admin
     const adminUser = await User.create({
-      name: "Alex Mercer",
-      email: "admin@example.com",
+      name: "Admin",
+      email: "admin@quickdine.com",
       password: adminPassword,
-      phone: "+01234567788",
+      phone: "+923001234567",
       role: "admin",
     });
 
@@ -55,147 +55,514 @@ const seedData = async () => {
 
     console.log("Creating restaurants...");
 
-    const dummyRestaurant = [
+    const restaurants = [
       {
-        name: "L'Essence",
-        slug: "l-essence",
+        name: "Monal Restaurant",
+        slug: "monal-restaurant",
         description:
-          "An intimate, Parisian-inspired fine dining chamber wrapped in dark velvet and soft golden candle glow. L'Essence specializes in meticulous plating of haute gastronomy, creating a rich sensory dialogue between modern culinary innovation and classic romance.",
-        cuisine: "French",
-        priceRange: "$$$$",
-        rating: 4.9,
-        reviewCount: 88,
-        location: "Manhattan, NY",
-        address: "115 Greenwich St, New York, NY 10006",
-        image: "/restaurant_5.png",
-        chef: "Jean-Luc Picard",
-        tags: ["Romantic", "Velvet Booths", "Candlelit", "Haute Cuisine"],
-        availableSlots: ["18:00", "19:00", "20:00", "21:00", "22:00"],
-        featured: true,
-        exclusive: false,
-      },
-      {
-        name: "Terraza Cielo",
-        slug: "terraza-cielo",
-        description:
-          "A sun-drenched rooftop oasis celebrating Italian and Mediterranean lifestyles. Featuring floor-to-ceiling foliage, white marble bistro tables, and panoramic skyline views, Terraza Cielo serves hand-crafted pastas and coastal seafood paired with bright botanical cocktails.",
-        cuisine: "Italian",
+          "An iconic dining destination offering Pakistani and continental cuisine with panoramic views and an elegant dining atmosphere.",
+        cuisine: "Pakistani",
         priceRange: "$$$",
-        rating: 4.7,
-        reviewCount: 205,
-        location: "Manhattan, NY",
-        address: "244 Fifth Ave Rooftop, New York, NY 10001",
-        image: "/restaurant_3.jpg",
-        chef: "Elena Rossi",
-        tags: ["Rooftop", "Skyline Views", "Handmade Pasta", "Craft Cocktails"],
+        rating: 4.6,
+        reviewCount: 3250,
+        location: "Islamabad, Pakistan",
+        address: "Pir Sohawa Road, Islamabad, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Muhammad Ali",
+        tags: ["Pakistani", "Hill View", "Fine Dining", "Family"],
         availableSlots: [
           "12:00",
           "13:00",
-          "17:00",
+          "14:00",
           "18:00",
           "19:00",
           "20:00",
           "21:00",
         ],
         featured: true,
-        exclusive: false,
-      },
-      {
-        name: "Kuro Omakase",
-        slug: "kuro-omakase",
-        description:
-          "An atmospheric, moody sanctuary of premium Japanese gastronomy. Seated at a dark, polished basalt-stone counter, guests experience a deeply focused sushi omakase. Chef Kenji Sato translates the freshest seasonal ingredients directly from Tokyo's fish markets into elegant, edible poetry.",
-        cuisine: "Japanese",
-        priceRange: "$$$$",
-        rating: 4.8,
-        reviewCount: 92,
-        location: "Manhattan, NY",
-        address: "18 Orchard St, New York, NY 10002",
-        image: "/restaurant_2.jpg",
-        chef: "Kenji Sato",
-        tags: ["Omakase", "Basalt Counter", "Japanese", "Zen Atmosphere"],
-        availableSlots: ["18:00", "20:30"],
-        featured: true,
         exclusive: true,
       },
+
       {
-        name: "Flora Garden",
-        slug: "flora-garden",
+        name: "Kolachi Restaurant",
+        slug: "kolachi-restaurant",
         description:
-          "A bright, airy conservatory celebrating organic, plant-forward gastronomy. Nestled under glass ceilings with floor-to-ceiling botanicals, Flora Garden transforms fresh seasonal crops into delicate, high-end editorial culinary works of art.",
-        cuisine: "Vegetarian",
+          "A sophisticated Karachi dining destination with a beautiful seaside atmosphere, elegant outdoor seating and traditional Pakistani cuisine.",
+        cuisine: "Pakistani",
         priceRange: "$$$",
-        rating: 4.8,
-        reviewCount: 110,
-        location: "Manhattan, NY",
-        address: "90 Grand St, New York, NY 10013",
-        image: "/restaurant_6.png",
-        chef: "Chloe Mercer",
-        tags: ["Plant-Based", "Glasshouse", "Organic", "Bright & Airy"],
-        availableSlots: ["11:30", "13:00", "14:30", "17:30", "19:00", "20:30"],
-        featured: false,
-        exclusive: false,
-      },
-      {
-        name: "Ember Grille",
-        slug: "ember-grille",
-        description:
-          "An upscale modern steakhouse with exposed brick walls, leather booths, and warm, industrial-chic pendant lighting. Offering Prime dry-aged cuts grilled over live hickory and cherrywood embers. Gourmet dining elevated into a sophisticated nocturnal experience.",
-        cuisine: "Steakhouse",
-        priceRange: "$$$$",
-        rating: 4.6,
-        reviewCount: 142,
-        location: "Manhattan, NY",
-        address: "320 Bowery, New York, NY 10012",
-        image: "/restaurant_1.png",
-        chef: "Marcus Vance",
-        tags: ["Dry-Aged Beef", "Wood Fire", "Moody Lighting", "Wine Room"],
-        availableSlots: ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
-        featured: false,
-        exclusive: false,
-      },
-      {
-        name: "L'Artiste",
-        slug: "l-artiste",
-        description:
-          "An avant-garde journey through modern French gastronomy. L'Artiste blends classic French culinary foundations with contemporary visual artistry, resulting in a sensory dining experience that is both theatrical and deeply satisfying. Set in a gorgeous high-ceilinged room with minimal charcoal and gold design language.",
-        cuisine: "French",
-        priceRange: "$$$$",
-        rating: 4.9,
-        reviewCount: 124,
-        location: "Manhattan, NY",
-        address: "420 Mercer St, New York, NY 10003",
-        image: "/restaurant_4.png",
-        chef: "Jean-Pierre Dubois",
-        tags: ["Michelin Star", "Fine Dining", "Tasting Menu", "Romantic"],
+        rating: 4.7,
+        reviewCount: 4100,
+        location: "Karachi, Pakistan",
+        address: "Do Darya, DHA Phase 8, Karachi, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Ahmed Khan",
+        tags: ["Pakistani", "Sea View", "Outdoor Dining", "Family"],
         availableSlots: [
-          "17:00",
-          "17:30",
+          "13:00",
+          "14:00",
           "18:00",
-          "18:30",
           "19:00",
-          "19:30",
           "20:00",
-          "20:30",
           "21:00",
-          "21:30",
+          "22:00",
         ],
         featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "Butt Karahi",
+        slug: "butt-karahi",
+        description:
+          "A classic Lahore restaurant known for its lively traditional dining atmosphere and authentic Punjabi cuisine.",
+        cuisine: "Punjabi",
+        priceRange: "$$",
+        rating: 4.6,
+        reviewCount: 2900,
+        location: "Lahore, Pakistan",
+        address: "Lakshmi Chowk, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Imran Butt",
+        tags: ["Punjabi", "Traditional", "Family", "Casual Dining"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "Andaaz Restaurant",
+        slug: "andaaz-restaurant",
+        description:
+          "An elegant rooftop restaurant in Lahore featuring traditional architecture, heritage surroundings and a sophisticated Pakistani dining experience.",
+        cuisine: "Pakistani",
+        priceRange: "$$$",
+        rating: 4.5,
+        reviewCount: 1800,
+        location: "Lahore, Pakistan",
+        address: "Fort Road Food Street, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Hassan Raza",
+        tags: ["Pakistani", "Rooftop", "Heritage", "Fine Dining"],
+        availableSlots: ["13:00", "14:00", "18:00", "19:00", "20:00", "21:00"],
+        featured: true,
         exclusive: true,
+      },
+
+      {
+        name: "Haveli Restaurant",
+        slug: "haveli-restaurant",
+        description:
+          "A traditional Lahore dining venue featuring Mughal-inspired architecture, rooftop seating and stunning views of the historic city.",
+        cuisine: "Pakistani",
+        priceRange: "$$$",
+        rating: 4.5,
+        reviewCount: 2400,
+        location: "Lahore, Pakistan",
+        address: "Fort Road Food Street, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Usman Tariq",
+        tags: ["Traditional", "Rooftop", "Heritage", "Pakistani"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "Savour Foods",
+        slug: "savour-foods",
+        description:
+          "A popular Pakistani dining restaurant with a casual, welcoming atmosphere and spacious seating for families and groups.",
+        cuisine: "Pakistani",
+        priceRange: "$$",
+        rating: 4.4,
+        reviewCount: 3600,
+        location: "Islamabad, Pakistan",
+        address: "Blue Area, Islamabad, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Asif Malik",
+        tags: ["Pakistani", "Casual", "Family", "Affordable"],
+        availableSlots: ["12:00", "13:00", "14:00", "18:00", "19:00", "20:00"],
+        featured: false,
+        exclusive: false,
+      },
+
+      {
+        name: "Khyber Restaurant",
+        slug: "khyber-restaurant",
+        description:
+          "A traditional Peshawari dining destination featuring warm interiors, wooden details and an authentic Pashtun atmosphere.",
+        cuisine: "Pashtun",
+        priceRange: "$$",
+        rating: 4.5,
+        reviewCount: 1750,
+        location: "Peshawar, Pakistan",
+        address: "University Road, Peshawar, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Rahim Khan",
+        tags: ["Pashtun", "Traditional", "Peshawari", "Family"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: false,
+        exclusive: false,
+      },
+
+      {
+        name: "Namak Mandi",
+        slug: "namak-mandi",
+        description:
+          "A traditional Peshawari restaurant with a rustic atmosphere, comfortable seating and an authentic Pashtun dining environment.",
+        cuisine: "Peshawari",
+        priceRange: "$$",
+        rating: 4.6,
+        reviewCount: 2100,
+        location: "Peshawar, Pakistan",
+        address: "Namak Mandi, Peshawar, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Shahid Afridi",
+        tags: ["Peshawari", "Traditional", "Rustic", "Family"],
+        availableSlots: ["12:00", "13:00", "14:00", "18:00", "19:00", "20:00"],
+        featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "Tuscany Courtyard",
+        slug: "tuscany-courtyard",
+        description:
+          "An elegant Islamabad restaurant with European-inspired interiors, lush greenery and a peaceful courtyard dining atmosphere.",
+        cuisine: "Italian",
+        priceRange: "$$$",
+        rating: 4.5,
+        reviewCount: 1900,
+        location: "Islamabad, Pakistan",
+        address: "Kohsar Market, Islamabad, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Marco Rossi",
+        tags: ["Italian", "Mediterranean", "Courtyard", "Elegant"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "Laal Qila",
+        slug: "laal-qila",
+        description:
+          "A Mughal-themed restaurant featuring traditional architecture, decorative interiors and an immersive heritage dining environment.",
+        cuisine: "Mughlai",
+        priceRange: "$$$",
+        rating: 4.4,
+        reviewCount: 2800,
+        location: "Karachi, Pakistan",
+        address: "Main Shahrah-e-Faisal, Karachi, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Bilal Ahmed",
+        tags: ["Mughlai", "Mughal Theme", "Traditional", "Family"],
+        availableSlots: ["12:00", "13:00", "14:00", "19:00", "20:00", "21:00"],
+        featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "BBQ Tonight",
+        slug: "bbq-tonight",
+        description:
+          "A modern Pakistani restaurant with spacious interiors, comfortable family seating and a lively evening dining atmosphere.",
+        cuisine: "BBQ",
+        priceRange: "$$",
+        rating: 4.5,
+        reviewCount: 4500,
+        location: "Karachi, Pakistan",
+        address: "Multiple Locations, Karachi, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Faisal Ahmed",
+        tags: ["BBQ", "Modern", "Family", "Casual"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "Fuchsia",
+        slug: "fuchsia",
+        description:
+          "A stylish contemporary Asian restaurant featuring modern interiors, ambient lighting and an upscale dining atmosphere.",
+        cuisine: "Asian",
+        priceRange: "$$$",
+        rating: 4.5,
+        reviewCount: 1300,
+        location: "Karachi, Pakistan",
+        address: "Khayaban-e-Shahbaz, DHA, Karachi, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Daniel Wong",
+        tags: ["Asian", "Modern", "Upscale", "Contemporary"],
+        availableSlots: ["13:00", "14:00", "18:00", "19:00", "20:00", "21:00"],
+        featured: false,
+        exclusive: true,
+      },
+
+      {
+        name: "The Monal Lahore",
+        slug: "the-monal-lahore",
+        description:
+          "A premium Lahore dining venue with elegant interiors, spacious seating and a sophisticated city dining atmosphere.",
+        cuisine: "Continental",
+        priceRange: "$$$",
+        rating: 4.5,
+        reviewCount: 2200,
+        location: "Lahore, Pakistan",
+        address: "Liberty Chowk, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Hamza Malik",
+        tags: ["Continental", "Pakistani", "Fine Dining", "Modern"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: true,
+        exclusive: false,
+      },
+
+      {
+        name: "Cooco's Den",
+        slug: "coocos-den",
+        description:
+          "A distinctive Lahore restaurant blending traditional architecture, local art and rooftop dining with views of the historic city.",
+        cuisine: "Pakistani",
+        priceRange: "$$$",
+        rating: 4.4,
+        reviewCount: 1650,
+        location: "Lahore, Pakistan",
+        address: "Fort Road Food Street, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Salman Rauf",
+        tags: ["Pakistani", "Heritage", "Rooftop", "Art"],
+        availableSlots: ["13:00", "14:00", "18:00", "19:00", "20:00", "21:00"],
+        featured: false,
+        exclusive: true,
+      },
+
+      {
+        name: "Andaaz Islamabad",
+        slug: "andaaz-islamabad",
+        description:
+          "A contemporary restaurant with elegant interiors, comfortable seating and a refined Pakistani dining atmosphere.",
+        cuisine: "Pakistani",
+        priceRange: "$$$",
+        rating: 4.3,
+        reviewCount: 980,
+        location: "Islamabad, Pakistan",
+        address: "F-7 Markaz, Islamabad, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Ali Hassan",
+        tags: ["Pakistani", "Continental", "Modern", "Family"],
+        availableSlots: ["12:00", "13:00", "14:00", "18:00", "19:00", "20:00"],
+        featured: false,
+        exclusive: false,
+      },
+
+      {
+        name: "Salt'n Pepper Restaurant",
+        slug: "salt-n-pepper-restaurant",
+        description:
+          "A spacious family restaurant offering a comfortable modern dining environment with both local and continental cuisine.",
+        cuisine: "Pakistani",
+        priceRange: "$$",
+        rating: 4.3,
+        reviewCount: 3200,
+        location: "Lahore, Pakistan",
+        address: "Liberty Market, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Kamran Shah",
+        tags: ["Pakistani", "Continental", "Family", "Modern"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: false,
+        exclusive: false,
+      },
+
+      {
+        name: "Bundu Khan",
+        slug: "bundu-khan",
+        description:
+          "A well-known Pakistani restaurant with a warm family atmosphere, traditional décor and spacious indoor dining areas.",
+        cuisine: "Pakistani",
+        priceRange: "$$",
+        rating: 4.2,
+        reviewCount: 2900,
+        location: "Lahore, Pakistan",
+        address: "MM Alam Road, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Tariq Khan",
+        tags: ["BBQ", "Karahi", "Pakistani", "Family"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: false,
+        exclusive: false,
+      },
+
+      {
+        name: "Zameer Ansari",
+        slug: "zameer-ansari",
+        description:
+          "A popular Lahore restaurant featuring a casual traditional atmosphere, comfortable seating and an authentic Pakistani dining experience.",
+        cuisine: "BBQ",
+        priceRange: "$$",
+        rating: 4.3,
+        reviewCount: 1450,
+        location: "Lahore, Pakistan",
+        address: "MM Alam Road, Lahore, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Zameer Ansari",
+        tags: ["BBQ", "Karahi", "Pakistani", "Traditional"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: false,
+        exclusive: false,
+      },
+
+      {
+        name: "Usmania Restaurant",
+        slug: "usmania-restaurant",
+        description:
+          "A traditional Islamabad restaurant offering Pakistani and Mughlai cuisine in a comfortable family-friendly setting.",
+        cuisine: "Mughlai",
+        priceRange: "$$",
+        rating: 4.2,
+        reviewCount: 1800,
+        location: "Islamabad, Pakistan",
+        address: "Blue Area, Islamabad, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Naveed Ahmed",
+        tags: ["Mughlai", "BBQ", "Pakistani", "Family"],
+        availableSlots: ["12:00", "13:00", "14:00", "18:00", "19:00", "20:00"],
+        featured: false,
+        exclusive: false,
+      },
+
+      {
+        name: "Kababjees",
+        slug: "kababjees",
+        description:
+          "A popular Karachi restaurant with spacious modern interiors, outdoor seating and a lively atmosphere for family dining.",
+        cuisine: "BBQ",
+        priceRange: "$$",
+        rating: 4.5,
+        reviewCount: 3700,
+        location: "Karachi, Pakistan",
+        address: "Super Highway, Karachi, Pakistan",
+        image:
+          "https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&w=1200&q=80",
+        chef: "Chef Arif Hussain",
+        tags: ["BBQ", "Kebab", "Pakistani", "Family"],
+        availableSlots: [
+          "12:00",
+          "13:00",
+          "14:00",
+          "18:00",
+          "19:00",
+          "20:00",
+          "21:00",
+        ],
+        featured: true,
+        exclusive: false,
       },
     ];
 
-    const updatedRestaurantsData = dummyRestaurant.map(
-      (rest: any, idx: number) => {
-        const { ...restInfo } = rest;
-        return {
-          ...restInfo,
-          owner: ownerUser._id,
-          status: "approved",
-          totalSeats: 20 + idx * 5,
-        };
-      },
-    );
+   
+    const updatedRestaurantsData = restaurants.map((rest: any, idx: number) => {
+      const { ...restInfo } = rest;
+      return {
+        ...restInfo,
+        owner: ownerUser._id,
+        status: "approved",
+        totalSeats: 20 + idx * 5,
+      };
+    });
 
     await Restaurant.insertMany(updatedRestaurantsData);
 

@@ -1,8 +1,8 @@
 import { Response } from "express";
-import { AuthRequest } from "../middlewares/auth.middleware.js";
-import { Restaurant } from "../models/restaurant.model.js";
 import uploadToCloudinary from "../config/cloudinary.js";
+import { AuthRequest } from "../middlewares/auth.middleware.js";
 import { Booking } from "../models/bookings.model.js";
+import { Restaurant } from "../models/restaurant.model.js";
 
 // Get owner's restaurants
 // GET /api/owner/restaurant

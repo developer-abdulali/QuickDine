@@ -1,12 +1,13 @@
+import cors from "cors";
 import "dotenv/config";
 import express, { NextFunction, Request, Response } from "express";
-import cors from "cors";
 import connectDB from "./config/db.js";
+
+import adminRouter from "./routes/admin.router.js";
 import authRouter from "./routes/auth.router.js";
-import restaurantRouter from "./routes/restaurant.router.js";
 import bookingRouter from "./routes/booking.router.js";
 import ownerRouter from "./routes/owner.router.js";
-import adminRouter from "./routes/admin.router.js";
+import restaurantRouter from "./routes/restaurant.router.js";
 
 const app = express();
 

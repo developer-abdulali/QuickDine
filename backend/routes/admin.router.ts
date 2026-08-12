@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { adminOnly, protect } from "../middlewares/auth.middleware.js";
 import {
   approveRejectRestaurant,
   deleteRestaurant,
@@ -9,6 +8,7 @@ import {
   getAllUsers,
   updateUserRole,
 } from "../controllers/admin.controller.js";
+import { adminOnly, protect } from "../middlewares/auth.middleware.js";
 
 const adminRouter = Router();
 

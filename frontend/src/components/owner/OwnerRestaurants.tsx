@@ -1,107 +1,126 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { CalendarIcon, StoreIcon } from "lucide-react";
+import {CalendarIcon, StoreIcon} from "lucide-react";
 
 interface OwnerRestaurantsProps {
-  restaurants: any[];
-  bookings: any[];
-  onEdit: (restaurant: any) => void;
-  onViewBookings: (restaurantId: string) => void;
+    restaurants: any[];
+    bookings: any[];
+    onEdit: (restaurant : any) => void;
+    onViewBookings: (restaurantId : string) => void;
 }
 
-const restaurantIdOf = (b: any) => {
-  const ref = b?.restaurant;
-  if (!ref) return "";
-  return typeof ref === "string" ? ref : (ref?._id ?? ref);
+const restaurantIdOf = (b : any) => {
+    const ref = b ?. restaurant;
+    if (! ref) 
+        return "";
+    
+
+    return typeof ref === "string" ? ref : (ref ?. _id ?? ref);
 };
 
-const statusBadge = (status: string) => {
-  const base =
-    "text-[9px] font-medium tracking-widest uppercase px-2 py-0.5 rounded-sm";
-  if (status === "approved")
-    return `${base} bg-secondary-container/20 text-secondary`;
-  if (status === "rejected") return `${base} bg-error-container text-error`;
-  return `${base} bg-blue-100 text-blue-800`;
+const statusBadge = (status : string) => {
+    const base = "text-[9px] font-medium tracking-widest uppercase px-2 py-0.5 rounded-sm";
+    if (status === "approved") 
+        return `${base} bg-secondary-container/20 text-secondary`;
+    
+
+    if (status === "rejected") 
+        return `${base} bg-error-container text-error`;
+    
+
+    return `${base} bg-blue-100 text-blue-800`;
 };
 
-export default function OwnerRestaurants({
-  restaurants,
-  bookings,
-  onEdit,
-  onViewBookings,
-}: OwnerRestaurantsProps) {
-  const bookingCount = (restaurantId?: string) =>
-    bookings.filter((b) => String(restaurantIdOf(b)) === String(restaurantId))
-      .length;
+export default function OwnerRestaurants({restaurants, bookings, onEdit, onViewBookings} : OwnerRestaurantsProps) {
+    const bookingCount = (restaurantId? : string) => bookings.filter((b) => String(restaurantIdOf(b)) === String(restaurantId)).length;
 
-  return (
-    <div className="space-y-6 text-left">
-      <div className="flex justify-between items-center lg:hidden">
-        <h3 className="font-display text-lg font-medium text-primary">
-          My Restaurants
-        </h3>
-        <span className="text-xs text-black/55">
-          {restaurants.length} registered
-        </span>
-      </div>
+    return (
+        <div className="space-y-6 text-left">
+            <div className="flex justify-between items-center lg:hidden">
+                <h3 className="font-display text-lg font-medium text-primary">
+                    My Restaurants
+                </h3>
+                <span className="text-xs text-black/55">
+                    {
+                    restaurants.length
+                }
+                    registered
+                </span>
+            </div>
 
-      {restaurants.length === 0 ? (
-        <div className="bg-white border border-outline-variant/10 p-12 text-center rounded-md">
-          <StoreIcon size={32} className="mx-auto text-outline-variant mb-2" />
-          <p className="text-xs text-black/55 italic">
-            No restaurants registered yet.
-          </p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {restaurants.map((r) => {
-            const count = bookingCount(r._id);
-            return (
-              <div
-                key={r._id}
-                className="bg-white border border-outline-variant/20 p-6 rounded-md shadow-sm space-y-4"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3.5">
-                    <span className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-medium text-base shrink-0">
-                      {r.name.charAt(0)}
-                    </span>
-                    <div>
-                      <h4 className="font-display font-medium text-primary text-base line-clamp-1">
-                        {r.name}
-                      </h4>
-                      <p className="text-xs text-black/55 mt-0.5">
-                        {r.cuisine} · {r.location}
-                      </p>
-                    </div>
-                  </div>
-                  <span className={statusBadge(r.status)}>{r.status}</span>
+            {
+            restaurants.length === 0 ? (
+                <div className="bg-white border border-outline-variant/10 p-12 text-center rounded-md">
+                    <StoreIcon size={32}
+                        className="mx-auto text-outline-variant mb-2"/>
+                    <p className="text-xs text-black/55 italic">
+                        No restaurants registered yet.
+                    </p>
                 </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {
+                    restaurants.map((r) => {
+                        const count = bookingCount(r._id);
+                        return (
+                            <div key={
+                                    r._id
+                                }
+                                className="bg-white border border-outline-variant/20 p-6 rounded-md shadow-sm space-y-4">
+                                <div className="flex items-start justify-between gap-3">
+                                    <div className="flex items-center gap-3.5">
+                                        <span className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-medium text-base shrink-0">
+                                            {
+                                            r.name.charAt(0)
+                                        } </span>
+                                        <div>
+                                            <h4 className="font-display font-medium text-primary text-base line-clamp-1">
+                                                {
+                                                r.name
+                                            } </h4>
+                                            <p className="text-xs text-black/55 mt-0.5">
+                                                {
+                                                r.cuisine
+                                            }
+                                                · {
+                                                r.location
+                                            } </p>
+                                        </div>
+                                    </div>
+                                    <span className={
+                                        statusBadge(r.status)
+                                    }>
+                                        {
+                                        r.status
+                                    }</span>
+                                </div>
 
-                <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-black/55 border-t border-outline-variant/10 pt-3">
-                  <span>Capacity: {r.totalSeats} seats</span>
-                  <span>Bookings: {count}</span>
-                </div>
+                                <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-black/55 border-t border-outline-variant/10 pt-3">
+                                    <span>Capacity: {
+                                        r.totalSeats
+                                    }
+                                        seats</span>
+                                    <span>Bookings: {count}</span>
+                                </div>
 
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={() => onViewBookings(r._id)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer"
-                  >
-                    <CalendarIcon size={12} />
-                    Bookings ({count})
-                  </button>
-                  <button
-                    onClick={() => onEdit(r)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary hover:bg-secondary text-white text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer"
-                  >
-                    Update
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
+                                <div className="flex flex-wrap gap-2">
+                                    <button onClick={
+                                            () => onViewBookings(r._id)
+                                        }
+                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer">
+                                        <CalendarIcon size={12}/>
+                                        Bookings ({count})
+                                    </button>
+                                    <button onClick={
+                                            () => onEdit(r)
+                                        }
+                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary hover:bg-secondary text-white text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer">
+                                        Update
+                                    </button>
+                                </div>
+                            </div>
+                        );
+                    })
+                } </div>
+            )
+        } </div>
+    );
 }

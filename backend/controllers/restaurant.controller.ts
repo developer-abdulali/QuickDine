@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { Booking } from "../models/bookings.model.js";
 import { Restaurant } from "../models/restaurant.model.js";
 import { User } from "../models/user.model.js";
-import { Booking } from "../models/bookings.model.js";
 
 // Get all restaurants with search and filters
 // GET /api/restaurants

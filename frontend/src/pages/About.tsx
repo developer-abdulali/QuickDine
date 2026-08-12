@@ -35,31 +35,37 @@ export default function About() {
         <StaticPageHeader
           eyebrow="Company"
           title="About QuickDine"
-          subtitle="QuickDine connects discerning palates with the world's most exceptional culinary experiences — pairing curious diners with the restaurants shaping modern gastronomy."
+          subtitle="QuickDine connects discerning palates with the Pakistani's most exceptional culinary experiences — pairing curious diners with the restaurants shaping modern gastronomy."
         />
 
         {/* Story */}
         <section className="max-w-7xl mx-auto px-6 md:px-10 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
           <div className="space-y-4">
-            <h2 className="font-display text-2xl font-medium text-primary">Our Story</h2>
+            <h2 className="font-display text-2xl font-medium text-primary">
+              Our Story
+            </h2>
             <p className="text-sm text-black/55 leading-relaxed">
-              QuickDine began with a simple frustration: remarkable restaurants were
-              everywhere, yet discovering them, reserving a table, and managing guest
-              capacity remained fragmented and manual. We built a single platform where
-              diners find and book exceptional experiences, and where restaurant owners
-              run reservations effortlessly.
+              QuickDine began with a simple frustration: remarkable restaurants
+              were everywhere, yet discovering them, reserving a table, and
+              managing guest capacity remained fragmented and manual. We built a
+              single platform where diners find and book exceptional
+              experiences, and where restaurant owners run reservations
+              effortlessly.
             </p>
             <p className="text-sm text-black/55 leading-relaxed">
-              Today QuickDine serves thousands of guests and partner venues each month,
-              pairing smart slot management with a curation-first discovery feed.
+              Today QuickDine serves thousands of guests and partner venues each
+              month, pairing smart slot management with a curation-first
+              discovery feed.
             </p>
           </div>
           <div className="space-y-4">
-            <h2 className="font-display text-2xl font-medium text-primary">Our Mission</h2>
+            <h2 className="font-display text-2xl font-medium text-primary">
+              Our Mission
+            </h2>
             <p className="text-sm text-black/55 leading-relaxed">
-              To make great dining effortless for guests and sustainable for chefs — by
-              turning every reservation into a memorable evening and every cover into
-              predictable revenue.
+              To make great dining effortless for guests and sustainable for
+              chefs — by turning every reservation into a memorable evening and
+              every cover into predictable revenue.
             </p>
           </div>
         </section>
@@ -77,8 +83,12 @@ export default function About() {
                   className="bg-surface border border-outline-variant/20 p-6 rounded-md shadow-sm space-y-3"
                 >
                   <Icon size={22} className="text-secondary" />
-                  <h3 className="font-display font-medium text-primary">{title}</h3>
-                  <p className="text-xs text-black/55 leading-relaxed">{text}</p>
+                  <h3 className="font-display font-medium text-primary">
+                    {title}
+                  </h3>
+                  <p className="text-xs text-black/55 leading-relaxed">
+                    {text}
+                  </p>
                 </div>
               ))}
             </div>
@@ -98,8 +108,12 @@ export default function About() {
                 key={s.label}
                 className="bg-white border border-outline-variant/20 p-6 rounded-md shadow-sm text-center space-y-1"
               >
-                <h4 className="font-display text-3xl font-medium text-primary">{s.value}</h4>
-                <p className="text-[10px] tracking-widest uppercase text-black/55">{s.label}</p>
+                <h4 className="font-display text-3xl font-medium text-primary">
+                  {s.value}
+                </h4>
+                <p className="text-[10px] tracking-widest uppercase text-black/55">
+                  {s.label}
+                </p>
               </div>
             ))}
           </div>

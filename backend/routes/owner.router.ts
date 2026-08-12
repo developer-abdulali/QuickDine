@@ -1,4 +1,5 @@
 import { Router } from "express";
+import upload from "../config/multer.js";
 import {
   createOwnerRestaurant,
   getOwnerBookings,
@@ -6,7 +7,6 @@ import {
   updateBookingStatus,
   updateOwnerRestaurant,
 } from "../controllers/owner.controller.js";
-import upload from "../config/multer.js";
 import { ownerOnly, protect } from "../middlewares/auth.middleware.js";
 
 const ownerRouter = Router();

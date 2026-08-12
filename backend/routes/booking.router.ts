@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { protect } from "../middlewares/auth.middleware.js";
 import {
   cancelBooking,
   createBooking,
   getMyBookings,
 } from "../controllers/booking.controller.js";
+import { protect } from "../middlewares/auth.middleware.js";
 
 const bookingRouter = Router();
 
