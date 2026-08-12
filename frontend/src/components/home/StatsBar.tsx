@@ -16,7 +16,7 @@ const stats = [
 
 export default function StatsBar() {
     return (
-        <section className="bg-primary text-white py-12">
+        <section className="bg-surface-container-low text-on-surface border-y border-outline-variant/20 py-12 transition-colors">
             <div className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
                 {
                 stats.map((s) => (
@@ -24,11 +24,11 @@ export default function StatsBar() {
                             s.label
                         }
                         className="text-center space-y-1">
-                        <h4 className="font-display text-3xl md:text-4xl font-medium">
+                        <h4 className="font-display text-3xl md:text-4xl font-medium text-secondary">
                             {
                             s.value
                         } </h4>
-                        <p className="text-[10px] tracking-widest uppercase text-white/70">
+                        <p className="text-[10px] tracking-widest uppercase text-on-surface/60 font-medium">
                             {
                             s.label
                         } </p>
@@ -38,3 +38,4 @@ export default function StatsBar() {
         </section>
     );
 }
+

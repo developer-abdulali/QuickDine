@@ -19,26 +19,26 @@ const restaurantIdOf = (b : any) => {
 const statusBadge = (status : string) => {
     const base = "text-[9px] font-medium tracking-widest uppercase px-2 py-0.5 rounded-sm";
     if (status === "approved") 
-        return `${base} bg-secondary-container/20 text-secondary`;
+        return `${base} bg-emerald-500/20 text-emerald-400`;
     
 
     if (status === "rejected") 
-        return `${base} bg-error-container text-error`;
+        return `${base} bg-error-container text-on-error-container`;
     
 
-    return `${base} bg-blue-100 text-blue-800`;
+    return `${base} bg-sky-500/20 text-sky-400`;
 };
 
 export default function OwnerRestaurants({restaurants, bookings, onEdit, onViewBookings} : OwnerRestaurantsProps) {
     const bookingCount = (restaurantId? : string) => bookings.filter((b) => String(restaurantIdOf(b)) === String(restaurantId)).length;
 
     return (
-        <div className="space-y-6 text-left">
+        <div className="space-y-6 text-left text-on-surface">
             <div className="flex justify-between items-center lg:hidden">
-                <h3 className="font-display text-lg font-medium text-primary">
+                <h3 className="font-display text-lg font-medium text-on-surface">
                     My Restaurants
                 </h3>
-                <span className="text-xs text-black/55">
+                <span className="text-xs text-on-surface/60">
                     {
                     restaurants.length
                 }
@@ -48,10 +48,10 @@ export default function OwnerRestaurants({restaurants, bookings, onEdit, onViewB
 
             {
             restaurants.length === 0 ? (
-                <div className="bg-white border border-outline-variant/10 p-12 text-center rounded-md">
+                <div className="bg-surface-container-lowest border border-outline-variant/10 p-12 text-center rounded-md">
                     <StoreIcon size={32}
                         className="mx-auto text-outline-variant mb-2"/>
-                    <p className="text-xs text-black/55 italic">
+                    <p className="text-xs text-on-surface/60 italic">
                         No restaurants registered yet.
                     </p>
                 </div>
@@ -64,19 +64,19 @@ export default function OwnerRestaurants({restaurants, bookings, onEdit, onViewB
                             <div key={
                                     r._id
                                 }
-                                className="bg-white border border-outline-variant/20 p-6 rounded-md shadow-sm space-y-4">
+                                className="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-md shadow-sm space-y-4">
                                 <div className="flex items-start justify-between gap-3">
                                     <div className="flex items-center gap-3.5">
-                                        <span className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary font-medium text-base shrink-0">
+                                        <span className="w-12 h-12 bg-secondary/15 rounded-full flex items-center justify-center text-secondary font-medium text-base shrink-0">
                                             {
                                             r.name.charAt(0)
                                         } </span>
                                         <div>
-                                            <h4 className="font-display font-medium text-primary text-base line-clamp-1">
+                                            <h4 className="font-display font-medium text-on-surface text-base line-clamp-1">
                                                 {
                                                 r.name
                                             } </h4>
-                                            <p className="text-xs text-black/55 mt-0.5">
+                                            <p className="text-xs text-on-surface/60 mt-0.5">
                                                 {
                                                 r.cuisine
                                             }
@@ -93,7 +93,7 @@ export default function OwnerRestaurants({restaurants, bookings, onEdit, onViewB
                                     }</span>
                                 </div>
 
-                                <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-black/55 border-t border-outline-variant/10 pt-3">
+                                <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-on-surface/60 border-t border-outline-variant/10 pt-3">
                                     <span>Capacity: {
                                         r.totalSeats
                                     }
@@ -105,14 +105,14 @@ export default function OwnerRestaurants({restaurants, bookings, onEdit, onViewB
                                     <button onClick={
                                             () => onViewBookings(r._id)
                                         }
-                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer">
+                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer border border-outline-variant/20">
                                         <CalendarIcon size={12}/>
                                         Bookings ({count})
                                     </button>
                                     <button onClick={
                                             () => onEdit(r)
                                         }
-                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary hover:bg-secondary text-white text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer">
+                                        className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-primary hover:bg-secondary text-on-primary hover:text-white text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer">
                                         Update
                                     </button>
                                 </div>
@@ -124,3 +124,4 @@ export default function OwnerRestaurants({restaurants, bookings, onEdit, onViewB
         } </div>
     );
 }
+

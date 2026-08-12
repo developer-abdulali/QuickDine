@@ -9,16 +9,16 @@ interface TrendingRowProps {
 
 export default function TrendingRow({trending, loading} : TrendingRowProps) {
     return (
-        <section className="py-24 bg-surface-container-low/50">
+        <section className="py-24 bg-surface-container-low/50 transition-colors">
             <div className="max-w-7xl mx-auto px-6 md:px-10">
                 <div className="flex justify-between items-end mb-12">
                     <div>
-                        <span className="text-[10px] text-secondary tracking-[0.2em] block mb-2 uppercase">
+                        <span className="text-[10px] text-secondary tracking-[0.2em] font-medium block mb-2 uppercase">
                             CURRENTLY TRENDING
                         </span>
-                        <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary">Trending Fine Dining</h2>
+                        <h2 className="font-display text-2xl md:text-3xl font-semibold text-on-surface">Trending Fine Dining</h2>
                     </div>
-                    <Link to="/search" className="text-xs text-secondary hover:text-primary transition-colors flex items-center gap-1.5 group">
+                    <Link to="/search" className="text-xs text-secondary hover:text-on-surface transition-colors flex items-center gap-1.5 group font-medium">
                         VIEW ALL
                         <ArrowRight size={14}
                             className="group-hover:translate-x-1 transition-transform"/>
@@ -45,3 +45,4 @@ export default function TrendingRow({trending, loading} : TrendingRowProps) {
         </section>
     );
 }
+

@@ -3,14 +3,14 @@ import {dummyReviews} from "../../assets/assets.ts";
 
 export default function RestaurantReviews() {
     return (
-        <section className="space-y-8 pt-6 border-t border-outline-variant/10 text-left">
-            <h3 className="font-display text-xl font-semibold text-primary">Guest Experiences</h3>
+        <section className="space-y-8 pt-6 border-t border-outline-variant/10 text-left text-on-surface">
+            <h3 className="font-display text-xl font-semibold text-on-surface">Guest Experiences</h3>
 
             {/* Reviews list */}
             <div className="space-y-6">
                 {
                 dummyReviews.length === 0 ? (
-                    <p className="text-xs text-black/55/80 italic">No reviews yet. Be the first to share your experience!</p>
+                    <p className="text-xs text-on-surface/60 italic">No reviews yet. Be the first to share your experience!</p>
                 ) : (dummyReviews.map((r : any) => (
                     <div key={
                             r._id
@@ -18,11 +18,11 @@ export default function RestaurantReviews() {
                         className="pb-6 border-b border-outline-variant/10 last:border-b-0 space-y-2">
                         <div className="flex items-center justify-between">
                             <div>
-                                <h4 className="text-sm font-medium text-primary">
+                                <h4 className="text-sm font-medium text-on-surface">
                                     {
                                     r.userName
                                 }</h4>
-                                <span className="text-xs text-black/55">Visited {
+                                <span className="text-xs text-on-surface/60">Visited {
                                     new Date(r.visitedDate).toLocaleDateString()
                                 }</span>
                             </div>
@@ -40,7 +40,7 @@ export default function RestaurantReviews() {
                                 ))
                             } </div>
                         </div>
-                        <p className="text-xs text-black/55 max-w-lg leading-relaxed">
+                        <p className="text-xs text-on-surface/60 max-w-lg leading-relaxed">
                             {
                             r.comment
                         }</p>
@@ -50,3 +50,4 @@ export default function RestaurantReviews() {
         </section>
     );
 }
+

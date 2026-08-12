@@ -128,22 +128,22 @@ export default function BookingConfirmation() {
     }
 
     return (
-        <div className="min-h-screen bg-surface flex flex-col pt-20">
+        <div className="min-h-screen bg-surface flex flex-col pt-20 text-on-surface transition-colors">
             <Navbar/> {/* Main Booking Content */}
             <main className="grow max-w-7xl w-full mx-auto px-6 md:px-10 py-12">
                 {/* Progress bar header */}
-                <div className="flex items-center gap-2 mb-10 pb-4 border-b border-outline-variant/10 text-xs text-black/55">
+                <div className="flex items-center gap-2 mb-10 pb-4 border-b border-outline-variant/10 text-xs text-on-surface/60">
                     <Link to={
                             `/restaurant/${
                                 restaurant.slug
                             }`
                         }
-                        className="hover:text-primary transition-colors">
+                        className="hover:text-secondary transition-colors">
                         {
                         restaurant.name
                     } </Link>
                     <ChevronRight size={14}/>
-                    <span className="text-primary">Details & Confirmation</span>
+                    <span className="text-on-surface font-medium">Details & Confirmation</span>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -177,3 +177,4 @@ export default function BookingConfirmation() {
         </div>
     );
 }
+

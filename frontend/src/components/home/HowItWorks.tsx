@@ -21,13 +21,13 @@ const steps = [
 
 export default function HowItWorks() {
     return (
-        <section className="py-24 bg-surface-container-low/50">
+        <section className="py-24 bg-surface-container-low/50 transition-colors">
             <div className="max-w-7xl mx-auto px-6 md:px-10">
                 <div className="text-center mb-14">
-                    <span className="text-[10px] text-secondary tracking-[0.2em] block mb-2 uppercase">
+                    <span className="text-[10px] text-secondary tracking-[0.2em] font-medium block mb-2 uppercase">
                         HOW IT WORKS
                     </span>
-                    <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary">
+                    <h2 className="font-display text-2xl md:text-3xl font-semibold text-on-surface">
                         Discover. Reserve. Dine.
                     </h2>
                 </div>
@@ -36,9 +36,9 @@ export default function HowItWorks() {
                     {
                     steps.map(({icon: Icon, step, title, text}) => (
                         <div key={step}
-                            className="relative bg-white border border-outline-variant/20 p-8 rounded-md shadow-sm space-y-5">
+                            className="relative bg-surface-container-lowest border border-outline-variant/20 p-8 rounded-md shadow-sm space-y-5">
                             <div className="flex items-center justify-between">
-                                <span className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                <span className="w-12 h-12 bg-secondary/15 rounded-full flex items-center justify-center text-secondary">
                                     <Icon size={22}
                                         strokeWidth={1.4}/>
                                 </span>
@@ -46,9 +46,9 @@ export default function HowItWorks() {
                                     {step} </span>
                             </div>
                             <div>
-                                <h3 className="font-display font-medium text-primary text-lg">
+                                <h3 className="font-display font-medium text-on-surface text-lg">
                                     {title} </h3>
-                                <p className="text-xs text-black/55 leading-relaxed mt-2">
+                                <p className="text-xs text-on-surface/60 leading-relaxed mt-2">
                                     {text} </p>
                             </div>
                         </div>
@@ -58,3 +58,4 @@ export default function HowItWorks() {
         </section>
     );
 }
+

@@ -13,10 +13,10 @@ export default function CuisineBrowse() {
         <section className="py-24 max-w-7xl mx-auto px-6 md:px-10">
             <div className="flex justify-between items-end mb-12">
                 <div>
-                    <span className="text-[10px] text-secondary tracking-[0.2em] block mb-2 uppercase">CURATED SELECTION</span>
-                    <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary">Browse by Cuisine</h2>
+                    <span className="text-[10px] text-secondary tracking-[0.2em] font-medium block mb-2 uppercase">CURATED SELECTION</span>
+                    <h2 className="font-display text-2xl md:text-3xl font-semibold text-on-surface">Browse by Cuisine</h2>
                 </div>
-                <Link to="/search" className="text-xs text-secondary hover:text-primary transition-colors flex items-center gap-1.5 group">
+                <Link to="/search" className="text-xs text-secondary hover:text-on-surface transition-colors flex items-center gap-1.5 group font-medium">
                     EXPLORE ALL
                     <ArrowRight size={14}
                         className="group-hover:translate-x-1 transition-transform"/>
@@ -34,11 +34,11 @@ export default function CuisineBrowse() {
                             onClick={
                                 () => handleCuisineClick(c.name)
                             }
-                            className="group cursor-pointer text-center py-8 bg-white border border-outline-variant/20 hover:border-secondary transition-soft flex flex-col items-center justify-center">
+                            className="group cursor-pointer text-center py-8 bg-surface-container-lowest border border-outline-variant/20 hover:border-secondary transition-soft flex flex-col items-center justify-center rounded-md">
                             <Icon size={32}
                                 strokeWidth={1.1}
-                                className="text-black/55 group-hover:text-secondary mb-4 transition-colors"/>
-                            <span className="text-[10px] tracking-widest text-primary">
+                                className="text-on-surface/60 group-hover:text-secondary mb-4 transition-colors"/>
+                            <span className="text-[10px] tracking-widest text-on-surface font-medium uppercase">
                                 {
                                 c.label
                             }</span>
@@ -49,3 +49,4 @@ export default function CuisineBrowse() {
         </section>
     );
 }
+

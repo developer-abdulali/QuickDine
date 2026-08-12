@@ -97,7 +97,7 @@ export default function Dashboard() {
     });
 
     return (
-        <div className="min-h-screen bg-surface flex flex-col pt-20">
+        <div className="min-h-screen bg-surface flex flex-col pt-20 text-on-surface transition-colors">
             <Navbar/>
             <AuthModal/>
 
@@ -106,11 +106,11 @@ export default function Dashboard() {
                 <div className="grow space-y-10">
                     {/* Welcoming header */}
                     <div className="pb-4 border-b border-outline-variant/10">
-                        <h2 className="font-display text-2xl md:text-3xl font-semibold text-primary">
+                        <h2 className="font-display text-2xl md:text-3xl font-semibold text-on-surface">
                             Welcome back, {
                             user.name.split(" ")[0]
                         } </h2>
-                        <p className="text-xs text-black/55 mt-1.5">
+                        <p className="text-xs text-on-surface/60 mt-1.5">
                             Manage your upcoming dining experiences.
                         </p>
                     </div>
@@ -118,25 +118,25 @@ export default function Dashboard() {
                     <div className="space-y-10">
                         {/* Upcoming Reservations */}
                         <div className="space-y-4">
-                            <h3 className="font-display text-lg font-medium text-primary">
+                            <h3 className="font-display text-lg font-medium text-on-surface">
                                 Upcoming Bookings
                             </h3>
 
                             {
                             loadingBookings ? (
-                                <div className="bg-white border border-outline-variant/10 p-12 text-center flex justify-center">
+                                <div className="bg-surface-container-lowest border border-outline-variant/10 p-12 text-center flex justify-center">
                                     <div className="w-6 h-6 border-2 border-outline-variant/30 border-t-secondary rounded-full animate-spin"></div>
                                 </div>
                             ) : upcomingBookings.length === 0 ? (
-                                <div className="bg-white border border-outline-variant/10 p-12 text-center rounded-md">
+                                <div className="bg-surface-container-lowest border border-outline-variant/10 p-12 text-center rounded-md">
                                     <CalendarDaysIcon size={36}
                                         className="mx-auto text-outline-variant mb-2"/>
 
-                                    <p className="text-xs text-black/55 italic">
+                                    <p className="text-xs text-on-surface/60 italic">
                                         No upcoming reservations scheduled.
                                     </p>
 
-                                    <Link to="/search" className="inline-block mt-4 bg-primary hover:bg-secondary text-white text-[10px] font-medium tracking-widest uppercase px-6 py-2.5 transition-colors">
+                                    <Link to="/search" className="inline-block mt-4 bg-primary hover:bg-secondary text-on-primary hover:text-white text-[10px] font-medium tracking-widest uppercase px-6 py-2.5 transition-colors rounded">
                                         Book a Table
                                     </Link>
                                 </div>
@@ -147,7 +147,7 @@ export default function Dashboard() {
                                         <div key={
                                                 b._id
                                             }
-                                            className="bg-white border border-outline-variant/20 rounded-md p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                                            className="bg-surface-container-lowest border border-outline-variant/20 rounded-md p-6 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                                             <div className="flex gap-4">
                                                 <div className="w-16 h-16 rounded-sm overflow-hidden shrink-0 bg-surface">
                                                     <img src={
@@ -163,11 +163,11 @@ export default function Dashboard() {
                                                         {
                                                         b.restaurant ?. cuisine
                                                     } </span>
-                                                    <h4 className="font-display text-base font-medium text-primary">
+                                                    <h4 className="font-display text-base font-medium text-on-surface">
                                                         {
                                                         b.restaurant ?. name
                                                     } </h4>
-                                                    <p className="text-xs text-black/55 flex items-center gap-1">
+                                                    <p className="text-xs text-on-surface/60 flex items-center gap-1">
                                                         <MapPinIcon size={12}/> {
                                                         b.restaurant ?. location
                                                     } </p>
@@ -222,13 +222,13 @@ export default function Dashboard() {
                             {
                             loadingBookings ? null : pastBookings.length !== 0 && (
                                 <>
-                                    <h3 className="font-display text-lg font-medium text-primary">
+                                    <h3 className="font-display text-lg font-medium text-on-surface">
                                         Dining History
                                     </h3>
-                                    <div className="bg-white border border-outline-variant/20 rounded-md overflow-hidden shadow-sm">
+                                    <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-md overflow-hidden shadow-sm">
                                         <table className="w-full text-left text-xs border-collapse">
                                             <thead>
-                                                <tr className="bg-surface-container-low border-b border-outline-variant/10 text-[10px] font-medium tracking-wider text-black/55 uppercase">
+                                                <tr className="bg-surface-container-low border-b border-outline-variant/10 text-[10px] font-medium tracking-wider text-on-surface/60 uppercase">
                                                     <th className="p-4">Restaurant</th>
                                                     <th className="p-4">Date & Time</th>
                                                     <th className="p-4">Party</th>
@@ -241,8 +241,8 @@ export default function Dashboard() {
                                                     <tr key={
                                                             b._id
                                                         }
-                                                        className="hover:bg-surface/50">
-                                                        <td className="p-4 font-medium text-primary">
+                                                        className="hover:bg-surface-container-low/50 transition-colors">
+                                                        <td className="p-4 font-medium text-on-surface">
                                                             <Link to={
                                                                     `/restaurant/${
                                                                         b.restaurant ?. slug
@@ -253,7 +253,7 @@ export default function Dashboard() {
                                                                 b.restaurant ?. name
                                                             } </Link>
                                                         </td>
-                                                        <td className="p-4">
+                                                        <td className="p-4 text-on-surface/80">
                                                             {
                                                             new Date(b.date).toLocaleDateString()
                                                         }
@@ -263,7 +263,7 @@ export default function Dashboard() {
                                                         }
                                                             PM
                                                         </td>
-                                                        <td className="p-4">
+                                                        <td className="p-4 text-on-surface/80">
                                                             {
                                                             b.guests
                                                         }
@@ -274,7 +274,7 @@ export default function Dashboard() {
                                                         <td className="p-4">
                                                             <span className={
                                                                 `inline-block py-0.5 px-2 text-[9px] font-medium tracking-wider uppercase rounded-sm ${
-                                                                    b.status === "confirmed" ? "bg-secondary-container/30 text-on-secondary-container" : b.status === "completed" ? "bg-green-100 text-green-800" : "bg-error-container text-on-error-container"
+                                                                    b.status === "confirmed" ? "bg-secondary-container/30 text-on-secondary-container" : b.status === "completed" ? "bg-emerald-500/20 text-emerald-400" : "bg-error-container text-on-error-container"
                                                                 }`
                                                             }>
                                                                 {
@@ -295,7 +295,7 @@ export default function Dashboard() {
                     {
                     recommendations.length > 0 && (
                         <div className="space-y-4 pt-10 border-t border-outline-variant/10">
-                            <h3 className="font-display text-lg font-medium text-primary">
+                            <h3 className="font-display text-lg font-medium text-on-surface">
                                 Recommended for You
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -316,3 +316,4 @@ export default function Dashboard() {
         </div>
     );
 }
+

@@ -102,16 +102,16 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
     };
 
     return (
-        <div className="max-w-2xl mx-auto bg-white border border-outline-variant/20 p-8 md:p-10 shadow-sm rounded-md space-y-6">
+        <div className="max-w-2xl mx-auto bg-surface-container-lowest border border-outline-variant/20 p-8 md:p-10 shadow-sm rounded-md space-y-6 text-on-surface">
             <div className="text-center space-y-2 pb-6 border-b border-outline-variant/10">
                 <Utensils size={36}
                     className="mx-auto text-secondary"/>
-                <h2 className="font-display text-xl font-medium text-primary">
+                <h2 className="font-display text-xl font-medium text-on-surface">
                     Setup Restaurant Profile
                 </h2>
-                <p className="text-xs text-black/55">
+                <p className="text-xs text-on-surface/60">
                     Please create your restaurant details. Once submitted, it will be
-                              pending approval from the Admin.
+                                  pending approval from the Admin.
                 </p>
             </div>
 
@@ -119,7 +119,7 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                 className="space-y-5 text-left">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1">
-                        <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                        <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                             Restaurant Name
                         </label>
                         <input type="text" required
@@ -128,10 +128,10 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                                 (e) => setName(e.target.value)
                             }
                             placeholder="e.g. L'Artiste"
-                            className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
+                            className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
                     </div>
                     <div className="space-y-1">
-                        <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                        <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                             Cuisine Type
                         </label>
                         <input type="text" required
@@ -140,12 +140,12 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                                 (e) => setCuisine(e.target.value)
                             }
                             placeholder="e.g. French, Omakase"
-                            className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
+                            className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
                     </div>
                 </div>
 
                 <div className="space-y-1">
-                    <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                    <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                         Description
                     </label>
                     <textarea required
@@ -155,15 +155,15 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                             (e) => setDescription(e.target.value)
                         }
                         placeholder="Describe the gastronomical experience, atmosphere, and dining philosophy..."
-                        className="w-full bg-surface-container-low/30 border border-outline-variant/40 p-3 text-xs focus:border-secondary focus:outline-none rounded-sm"></textarea>
+                        className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 p-3 text-xs focus:border-secondary focus:outline-none rounded-sm"></textarea>
                 </div>
 
                 {/* Cover Image Upload */}
                 <div className="space-y-1">
-                    <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                    <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                         Restaurant Cover Image
                     </label>
-                    <div className="flex flex-col md:flex-row gap-4 items-center bg-surface-container-low/30 border border-outline-variant/40 p-4 rounded-sm">
+                    <div className="flex flex-col md:flex-row gap-4 items-center bg-surface-container-low text-on-surface border border-outline-variant/40 p-4 rounded-sm">
                         <div className="relative w-32 h-24 bg-surface border border-outline-variant/30 rounded-sm overflow-hidden shrink-0 flex items-center justify-center">
                             {
                             imagePreview ? (
@@ -172,15 +172,15 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                                     className="w-full h-full object-cover"/>
                             ) : (
                                 <Image size={24}
-                                    className="text-black/30"/>
+                                    className="text-on-surface/30"/>
                             )
                         } </div>
                         <div className="grow space-y-2 text-center md:text-left w-full">
-                            <p className="text-[11px] text-black/55 leading-relaxed">
+                            <p className="text-[11px] text-on-surface/60 leading-relaxed">
                                 Upload a high-resolution banner photo for your restaurant page.
                                                 Supports JPG, PNG.
                             </p>
-                            <label className="inline-flex items-center gap-1.5 px-4 py-2 border border-outline-variant/40 hover:border-primary hover:text-primary transition-colors text-[10px] font-medium tracking-wider uppercase rounded-sm cursor-pointer bg-white">
+                            <label className="inline-flex items-center gap-1.5 px-4 py-2 border border-outline-variant/40 hover:border-secondary hover:text-secondary transition-colors text-[10px] font-medium tracking-wider uppercase rounded-sm cursor-pointer bg-surface-container-lowest text-on-surface">
                                 <Upload size={12}/> {
                                 imageFile ? "Change Image" : "Upload Image"
                             }
@@ -201,22 +201,22 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="space-y-1">
-                        <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                        <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                             Price Range
                         </label>
                         <select value={priceRange}
                             onChange={
                                 (e) => setPriceRange(e.target.value)
                             }
-                            className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm">
-                            <option value="$">$ (Casual)</option>
-                            <option value="$$">$$ (Moderate)</option>
-                            <option value="$$$">$$$ (Upscale)</option>
-                            <option value="$$$$">$$$$ (Fine Dining)</option>
+                            className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm">
+                            <option value="$" className="bg-surface-container-lowest text-on-surface">$ (Casual)</option>
+                            <option value="$$" className="bg-surface-container-lowest text-on-surface">$$ (Moderate)</option>
+                            <option value="$$$" className="bg-surface-container-lowest text-on-surface">$$$ (Upscale)</option>
+                            <option value="$$$$" className="bg-surface-container-lowest text-on-surface">$$$$ (Fine Dining)</option>
                         </select>
                     </div>
                     <div className="space-y-1">
-                        <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                        <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                             Location (City)
                         </label>
                         <input type="text" required
@@ -225,10 +225,10 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                                 (e) => setLocation(e.target.value)
                             }
                             placeholder="e.g. Manhattan, NY"
-                            className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
+                            className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
                     </div>
                     <div className="space-y-1">
-                        <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                        <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                             Total Capacity (Seats)
                         </label>
                         <input type="number" min="1" required
@@ -236,13 +236,13 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                             onChange={
                                 (e) => setTotalSeats(e.target.value)
                             }
-                            className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
+                            className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1">
-                        <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                        <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                             Address
                         </label>
                         <input type="text" required
@@ -251,10 +251,10 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                                 (e) => setAddress(e.target.value)
                             }
                             placeholder="123 Gastronomy Lane, New York"
-                            className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
+                            className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
                     </div>
                     <div className="space-y-1">
-                        <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                        <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                             Executive Chef
                         </label>
                         <input type="text" required
@@ -263,12 +263,12 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                                 (e) => setChef(e.target.value)
                             }
                             placeholder="Chef Jean-Luc"
-                            className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
+                            className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
                     </div>
                 </div>
 
                 <div className="space-y-1">
-                    <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                    <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                         Tags (comma separated)
                     </label>
                     <input type="text"
@@ -277,11 +277,11 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                             (e) => setTags(e.target.value)
                         }
                         placeholder="Michelin Star, Romantic, Rooftop"
-                        className="w-full bg-surface-container-low/30 border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
+                        className="w-full bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-2.5 text-xs focus:border-secondary focus:outline-none rounded-sm"/>
                 </div>
 
                 <div className="space-y-2">
-                    <span className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                    <span className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                         Available Slots
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -296,7 +296,7 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
                                     }
                                     className={
                                         `py-1.5 px-3 text-[10px] border transition-colors cursor-pointer rounded-sm ${
-                                            isSelected ? "bg-primary border-primary text-white" : "border-outline-variant/40 text-black/55 hover:border-primary"
+                                            isSelected ? "bg-secondary border-secondary text-white font-medium" : "border-outline-variant/40 text-on-surface/60 hover:border-secondary bg-surface-container-low"
                                         }`
                                 }>
                                     {slot} </button>
@@ -307,7 +307,7 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
 
                 <button type="submit"
                     disabled={formLoading}
-                    className="w-full bg-primary hover:bg-secondary text-white text-xs font-medium tracking-widest uppercase py-3.5 transition-colors cursor-pointer">
+                    className="w-full bg-primary hover:bg-secondary text-on-primary hover:text-white text-xs font-medium tracking-widest uppercase py-3.5 transition-colors cursor-pointer rounded-sm">
                     {
                     formLoading ? "SUBMITTING..." : "REGISTER RESTAURANT"
                 } </button>
@@ -315,3 +315,4 @@ export default function RestaurantWizard({setRestaurant} : RestaurantWizardProps
         </div>
     );
 }
+

@@ -9,9 +9,9 @@ interface AdminUsersProps {
 
 export default function AdminUsers({users, btnLoading, onRoleChange, onDeleteUser} : AdminUsersProps) {
     return (
-        <div className="space-y-6 text-left">
+        <div className="space-y-6 text-left text-on-surface">
             <div className="flex justify-between items-center lg:hidden">
-                <h3 className="font-display text-lg font-medium text-primary">
+                <h3 className="font-display text-lg font-medium text-on-surface">
                     User Accounts ({
                     users.length
                 })
@@ -20,18 +20,18 @@ export default function AdminUsers({users, btnLoading, onRoleChange, onDeleteUse
 
             {
             users.length === 0 ? (
-                <div className="bg-white border border-outline-variant/10 p-12 text-center rounded-md">
+                <div className="bg-surface-container-lowest border border-outline-variant/10 p-12 text-center rounded-md">
                     <UsersIcon size={32}
                         className="mx-auto text-outline-variant mb-2"/>
-                    <p className="text-xs text-black/55 italic">
+                    <p className="text-xs text-on-surface/60 italic">
                         No user accounts registered yet.
                     </p>
                 </div>
             ) : (
-                <div className="bg-white border border-outline-variant/20 rounded-md overflow-auto shadow-sm">
+                <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-md overflow-auto shadow-sm">
                     <table className="w-full text-left text-xs border-collapse">
                         <thead>
-                            <tr className="bg-surface-container-low border-b border-outline-variant/10 text-[10px] font-medium tracking-wider text-black/55 uppercase">
+                            <tr className="bg-surface-container-low border-b border-outline-variant/10 text-[10px] font-medium tracking-wider text-on-surface/60 uppercase">
                                 <th className="p-4">User</th>
                                 <th className="p-4">Contact</th>
                                 <th className="p-4">Role</th>
@@ -45,18 +45,18 @@ export default function AdminUsers({users, btnLoading, onRoleChange, onDeleteUse
                                 <tr key={
                                         u._id
                                     }
-                                    className="hover:bg-surface/50">
+                                    className="hover:bg-surface-container-low/50 transition-colors">
                                     <td className="p-4">
-                                        <div className="font-medium text-primary">
+                                        <div className="font-medium text-on-surface">
                                             {
                                             u.name
                                         }</div>
-                                        <div className="text-[10px] text-black/50">
+                                        <div className="text-[10px] text-on-surface/50">
                                             {
                                             u.email
                                         }</div>
                                     </td>
-                                    <td className="p-4 text-black/55">
+                                    <td className="p-4 text-on-surface/60">
                                         {
                                         u.phone || "—"
                                     }</td>
@@ -72,13 +72,13 @@ export default function AdminUsers({users, btnLoading, onRoleChange, onDeleteUse
                                                     u._id
                                                 }`
                                             }
-                                            className="bg-surface-container-low/30 border border-outline-variant/40 px-3 py-1.5 text-xs rounded-sm focus:border-secondary focus:outline-none disabled:opacity-50 cursor-pointer">
-                                            <option value="user">User</option>
-                                            <option value="owner">Owner</option>
-                                            <option value="admin">Admin</option>
+                                            className="bg-surface-container-low text-on-surface border border-outline-variant/40 px-3 py-1.5 text-xs rounded-sm focus:border-secondary focus:outline-none disabled:opacity-50 cursor-pointer">
+                                            <option value="user" className="bg-surface-container-lowest text-on-surface">User</option>
+                                            <option value="owner" className="bg-surface-container-lowest text-on-surface">Owner</option>
+                                            <option value="admin" className="bg-surface-container-lowest text-on-surface">Admin</option>
                                         </select>
                                     </td>
-                                    <td className="p-4 text-black/55">
+                                    <td className="p-4 text-on-surface/60">
                                         {
                                         u.createdAt ? new Date(u.createdAt).toLocaleDateString() : "—"
                                     } </td>
@@ -107,3 +107,4 @@ export default function AdminUsers({users, btnLoading, onRoleChange, onDeleteUse
         } </div>
     );
 }
+

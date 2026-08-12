@@ -18,6 +18,8 @@ interface AppContextType {
     loading: boolean;
     isAuthenticated: boolean;
     isAuthModalOpen: boolean;
+    theme: "light" | "dark";
+    toggleTheme: () => void;
     setAuthModalOpen: (open : boolean) => void;
     login: (email : string, password : string) => Promise < boolean >;
     register: (name : string, email : string, password : string, phone? : string, role? : string,) => Promise < boolean >;
@@ -35,6 +37,29 @@ export const AppContextProvider = ({children} : Props) => {
     const [token, setToken] = useState < string | null > (localStorage.getItem("token"),);
     const [loading, setLoading] = useState < boolean > (true);
     const [isAuthModalOpen, setAuthModalOpen] = useState < boolean > (false);
+    
+    // Theme State
+    const [theme, setTheme] = useState<"light" | "dark">(() => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark" || savedTheme === "light") {
+            return savedTheme;
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    });
+
+    useEffect(() => {
+        const root = document.documentElement;
+        if (theme === "dark") {
+            root.classList.add("dark");
+        } else {
+            root.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    };
 
     const login = async (email : string, password : string) : Promise < boolean > => {
         try {
@@ -120,11 +145,14 @@ export const AppContextProvider = ({children} : Props) => {
         loading,
         isAuthenticated: !!user,
         isAuthModalOpen,
+        theme,
+        toggleTheme,
         setAuthModalOpen,
         login,
         register,
         logout
     };
+
 
     return <AppContext.Provider value={value}>
         {children}</AppContext.Provider>;

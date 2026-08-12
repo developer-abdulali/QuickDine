@@ -72,17 +72,17 @@ export default function OwnerDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col pt-20">
+    <div className="min-h-screen bg-surface flex flex-col pt-20 text-on-surface transition-colors">
       <Navbar />
 
       <main className="grow max-w-7xl w-full mx-auto px-6 md:px-10 py-12">
         {/* Heading */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-outline-variant/10 pb-8 mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-outline-variant/10 pb-8 mb-8 text-left">
           <div>
-            <h1 className="font-display text-2xl md:text-3xl text-primary">
+            <h1 className="font-display text-2xl md:text-3xl text-on-surface font-semibold">
               Restaurant Portal
             </h1>
-            <p className="text-xs text-black/55 mt-1.5">
+            <p className="text-xs text-on-surface/60 mt-1.5">
               Review capacity limits and process live reservations.
             </p>
           </div>
@@ -90,7 +90,7 @@ export default function OwnerDashboard() {
             {restaurants.length > 0 && !editingRestaurant && (
               <button
                 onClick={() => setAddingRestaurant((prev) => !prev)}
-                className="bg-primary hover:bg-secondary text-white px-4 py-2 text-[10px] font-medium tracking-widest uppercase transition-colors cursor-pointer"
+                className="bg-primary hover:bg-secondary text-on-primary hover:text-white px-4 py-2 text-[10px] font-medium tracking-widest uppercase transition-colors rounded-sm cursor-pointer"
               >
                 {addingRestaurant ? (
                   <>
@@ -114,7 +114,7 @@ export default function OwnerDashboard() {
 
             <button
               onClick={logout}
-              className="bg-error-container hover:bg-error-container/85 text-error px-4 py-2 text-[10px] font-medium tracking-widest uppercase transition-colors"
+              className="bg-error-container hover:bg-error-container/85 text-on-error-container px-4 py-2 text-[10px] font-medium tracking-widest uppercase transition-colors rounded-sm cursor-pointer"
             >
               Sign Out
             </button>
@@ -129,7 +129,7 @@ export default function OwnerDashboard() {
           <div className="max-w-3xl mx-auto">
             <button
               onClick={() => setEditingRestaurant(null)}
-              className="inline-flex items-center gap-1.5 mb-6 px-4 py-2 bg-white border border-outline-variant/30 hover:border-primary text-black/55 hover:text-primary text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 mb-6 px-4 py-2 bg-surface-container-lowest border border-outline-variant/30 hover:border-secondary text-on-surface/80 hover:text-secondary text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer"
             >
               <ArrowLeftIcon size={12} />
               Back to My Restaurants
@@ -142,14 +142,14 @@ export default function OwnerDashboard() {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Tab selector sidebar */}
-            <aside className="lg:col-span-3 space-y-6 bg-white border border-outline-variant/20 p-6 rounded-md shadow-sm h-fit">
+            <aside className="lg:col-span-3 space-y-6 bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-md shadow-sm h-fit">
               <nav className="flex flex-col gap-1.5">
                 <button
                   onClick={() => setActiveTab("restaurants")}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-xs font-medium tracking-wider uppercase text-left rounded-sm cursor-pointer transition-colors ${
                     activeTab === "restaurants"
-                      ? "bg-primary text-white"
-                      : "text-black/55 hover:bg-surface"
+                      ? "bg-primary text-on-primary font-medium"
+                      : "text-on-surface/60 hover:bg-surface-container-low"
                   }`}
                 >
                   <StoreIcon size={14} />
@@ -160,8 +160,8 @@ export default function OwnerDashboard() {
                   onClick={() => setActiveTab("bookings")}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-xs font-medium tracking-wider uppercase text-left rounded-sm cursor-pointer transition-colors ${
                     activeTab === "bookings"
-                      ? "bg-primary text-white"
-                      : "text-black/55 hover:bg-surface"
+                      ? "bg-primary text-on-primary font-medium"
+                      : "text-on-surface/60 hover:bg-surface-container-low"
                   }`}
                 >
                   <CalendarIcon size={14} />
@@ -197,3 +197,4 @@ export default function OwnerDashboard() {
     </div>
   );
 }
+

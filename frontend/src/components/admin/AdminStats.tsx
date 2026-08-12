@@ -30,17 +30,17 @@ export default function AdminStats({stats} : AdminStatsProps) {
     ];
 
     return (
-        <div className="space-y-8 text-left">
+        <div className="space-y-8 text-left text-on-surface">
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {
                 kpiCards.map(({title, value, icon: Icon}) => (
                     <div key={title}
-                        className="bg-white border border-outline-variant/20 p-5 rounded-md shadow-sm space-y-2">
-                        <span className="text-[10px] font-medium tracking-wider text-black/55 uppercase flex items-center gap-1.5">
+                        className="bg-surface-container-lowest border border-outline-variant/20 p-5 rounded-md shadow-sm space-y-2">
+                        <span className="text-[10px] font-medium tracking-wider text-on-surface/60 uppercase flex items-center gap-1.5">
                             <Icon size={12}
                                 className="text-secondary"/> {title} </span>
-                        <h4 className="font-display text-2xl font-medium text-primary">
+                        <h4 className="font-display text-2xl font-medium text-on-surface">
                             {value} </h4>
                     </div>
                 ))
@@ -48,20 +48,20 @@ export default function AdminStats({stats} : AdminStatsProps) {
 
             {/* Recent Bookings */}
             <div className="space-y-4">
-                <h3 className="font-display text-lg font-medium text-primary">
+                <h3 className="font-display text-lg font-medium text-on-surface">
                     Recent Bookings Activity
                 </h3>
 
                 {
                 stats.latestBookings ?. length === 0 ? (
-                    <p className="text-xs text-black/40 italic">
+                    <p className="text-xs text-on-surface/50 italic">
                         No bookings recorded on the platform.
                     </p>
                 ) : (
-                    <div className="bg-white border border-outline-variant/20 rounded-md overflow-hidden shadow-sm">
+                    <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-md overflow-hidden shadow-sm">
                         <table className="w-full text-left text-xs border-collapse">
                             <thead>
-                                <tr className="bg-surface-container-low border-b border-outline-variant/10 text-[10px] tracking-wider text-black/55 uppercase">
+                                <tr className="bg-surface-container-low border-b border-outline-variant/10 text-[10px] tracking-wider text-on-surface/60 uppercase font-medium">
                                     {
                                     [
                                         "Ref Code",
@@ -87,29 +87,29 @@ export default function AdminStats({stats} : AdminStatsProps) {
                                     <tr key={
                                             b._id
                                         }
-                                        className="hover:bg-surface/50">
-                                        <td className="p-4 text-primary">
+                                        className="hover:bg-surface-container-low/50 transition-colors">
+                                        <td className="p-4 font-medium text-on-surface">
                                             {
                                             b.bookingId
                                         }</td>
 
                                         <td className="p-4">
-                                            <div className="text-primary">
+                                            <div className="text-on-surface font-medium">
                                                 {
                                                 b.user ?. name
                                             }</div>
-                                            <div className="text-[10px] text-black/50">
+                                            <div className="text-[10px] text-on-surface/50">
                                                 {
                                                 b.user ?. email
                                             } </div>
                                         </td>
 
-                                        <td className="p-4 text-primary">
+                                        <td className="p-4 text-on-surface font-medium">
                                             {
                                             b.restaurant ?. name || "Deleted Restaurant"
                                         } </td>
 
-                                        <td className="p-4 text-black/55">
+                                        <td className="p-4 text-on-surface/60">
                                             {
                                             new Date(b.date).toLocaleDateString()
                                         }
@@ -125,8 +125,8 @@ export default function AdminStats({stats} : AdminStatsProps) {
 
                                         <td className="p-4 text-right">
                                             <span className={
-                                                `inline-block py-0.5 px-2 text-[9px] tracking-wider uppercase rounded-sm ${
-                                                    b.status === "confirmed" ? "bg-blue-100 text-blue-800" : b.status === "completed" ? "bg-green-100 text-green-800" : "bg-error-container text-on-error-container"
+                                                `inline-block py-0.5 px-2 text-[9px] tracking-wider uppercase rounded-sm font-medium ${
+                                                    b.status === "confirmed" ? "bg-sky-500/20 text-sky-400" : b.status === "completed" ? "bg-emerald-500/20 text-emerald-400" : "bg-error-container text-on-error-container"
                                                 }`
                                             }>
                                                 {
@@ -143,3 +143,4 @@ export default function AdminStats({stats} : AdminStatsProps) {
         </div>
     );
 }
+

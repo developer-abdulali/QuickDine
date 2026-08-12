@@ -22,12 +22,12 @@ const restaurantIdOf = (b : any) => {
 const statusBadge = (status : string) => {
     const base = "text-[9px] font-medium tracking-widest uppercase px-2 py-0.5 rounded-sm";
     if (status === "confirmed") 
-        return `${base} bg-blue-100 text-blue-800`;
+        return `${base} bg-sky-500/20 text-sky-400`;
     
     if (status === "completed") 
-        return `${base} bg-green-100 text-green-800`;
+        return `${base} bg-emerald-500/20 text-emerald-400`;
     
-    return `${base} bg-error-container text-error`;
+    return `${base} bg-error-container text-on-error-container`;
 };
 
 export default function OwnerAllBookings({
@@ -59,9 +59,9 @@ export default function OwnerAllBookings({
     })).filter((g) => g.items.length > 0);
 
     return (
-        <div className="space-y-6 text-left">
+        <div className="space-y-6 text-left text-on-surface">
             <div className="flex flex-col md:flex-row flex-wrap justify-between items-start md:items-center gap-4 lg:hidden">
-                <h3 className="font-display text-lg font-medium text-primary">
+                <h3 className="font-display text-lg font-medium text-on-surface">
                     All Bookings
                 </h3>
                 {
@@ -72,7 +72,7 @@ export default function OwnerAllBookings({
                             }
                             className={
                                 `px-3 py-1.5 text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer ${
-                                    !filterRestaurantId ? "bg-primary text-white" : "bg-white border border-outline-variant/30 text-black/55 hover:border-primary"
+                                    !filterRestaurantId ? "bg-primary text-on-primary font-medium" : "bg-surface-container-lowest border border-outline-variant/30 text-on-surface/60 hover:border-secondary"
                                 }`
                         }>
                             All Restaurants
@@ -87,7 +87,7 @@ export default function OwnerAllBookings({
                                 }
                                 className={
                                     `px-3 py-1.5 text-[10px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer ${
-                                        filterRestaurantId === r._id ? "bg-primary text-white" : "bg-white border border-outline-variant/30 text-black/55 hover:border-primary"
+                                        filterRestaurantId === r._id ? "bg-primary text-on-primary font-medium" : "bg-surface-container-lowest border border-outline-variant/30 text-on-surface/60 hover:border-secondary"
                                     }`
                             }>
                                 {
@@ -100,10 +100,10 @@ export default function OwnerAllBookings({
 
             {
             filtered.length === 0 ? (
-                <div className="bg-white border border-outline-variant/10 p-12 text-center rounded-md">
+                <div className="bg-surface-container-lowest border border-outline-variant/10 p-12 text-center rounded-md">
                     <Calendar size={32}
                         className="mx-auto text-outline-variant mb-2"/>
-                    <p className="text-xs text-black/55 italic">
+                    <p className="text-xs text-on-surface/60 italic">
                         No booking records found.
                     </p>
                 </div>
@@ -116,17 +116,17 @@ export default function OwnerAllBookings({
                             }
                             className="space-y-3">
                             <div className="flex items-center gap-3">
-                                <h4 className="font-display font-medium text-primary">
+                                <h4 className="font-display font-medium text-on-surface">
                                     {
                                     g.restaurant.name
                                 } </h4>
-                                <span className="text-[9px] text-black/50 uppercase tracking-widest bg-outline-variant/10 px-1.5 py-0.5 rounded-sm">
+                                <span className="text-[9px] text-on-surface/50 uppercase tracking-widest bg-outline-variant/10 px-1.5 py-0.5 rounded-sm">
                                     {
                                     g.items.length
                                 } </span>
                             </div>
 
-                            <div className="bg-white border border-outline-variant/20 rounded-md shadow-sm divide-y divide-outline-variant/10">
+                            <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-md shadow-sm divide-y divide-outline-variant/10">
                                 {
                                 g.items.map((b) => (
                                     <div key={
@@ -135,16 +135,16 @@ export default function OwnerAllBookings({
                                         className="p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                                         <div className="space-y-1.5 flex-1">
                                             <div className="flex items-center gap-3">
-                                                <h5 className="font-medium text-primary text-sm">
+                                                <h5 className="font-medium text-on-surface text-sm">
                                                     {
                                                     b.user ?. name
                                                 } </h5>
-                                                <span className="text-[9px] text-black/50 border border-outline-variant/30 px-1.5 py-0.5">
+                                                <span className="text-[9px] text-on-surface/50 border border-outline-variant/30 px-1.5 py-0.5">
                                                     {
                                                     b.bookingId
                                                 } </span>
                                             </div>
-                                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-black/55">
+                                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-on-surface/60">
                                                 <span className="flex items-center gap-1">
                                                     <Users size={12}/> {
                                                     b.guests
@@ -163,7 +163,7 @@ export default function OwnerAllBookings({
                                             </div>
                                             {
                                             b.specialRequests && (
-                                                <p className="text-xs text-secondary/80 bg-secondary/5 px-3 py-1.5 rounded-sm border-l-2 border-secondary mt-2">
+                                                <p className="text-xs text-secondary/90 bg-secondary/10 px-3 py-1.5 rounded-sm border-l-2 border-secondary mt-2">
                                                     <strong>Requests:</strong>
                                                     {
                                                     b.specialRequests
@@ -184,7 +184,7 @@ export default function OwnerAllBookings({
                                                     <button onClick={
                                                             () => updateStatus(b._id, "completed", b)
                                                         }
-                                                        className="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white text-[9px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer">
+                                                        className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-[9px] font-medium tracking-wider uppercase rounded-sm transition-colors cursor-pointer">
                                                         Complete
                                                     </button>
                                                     <button onClick={
@@ -206,3 +206,4 @@ export default function OwnerAllBookings({
         } </div>
     );
 }
+

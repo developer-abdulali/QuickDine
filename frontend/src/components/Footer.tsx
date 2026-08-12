@@ -3,15 +3,15 @@ import {bottomLinks, footerSections, socialLinks} from "../assets/assets";
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-surface-container-low border-t border-outline-variant/20 pt-20 pb-12">
+        <footer className="w-full bg-surface-container-low border-t border-outline-variant/20 pt-20 pb-12 transition-colors">
             <div className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-4 gap-10">
                 {/* Brand */}
                 <div className="md:col-span-1">
                     <Link to="/" className="text-primary block mb-2">
-                        <img src="/logo.svg" alt="Logo" className="h-10 mt-1.5"/>
+                        <img src="/logo.svg" alt="Logo" className="h-10 mt-1.5 dark:brightness-200"/>
                     </Link>
 
-                    <p className="text-black/55 text-sm leading-relaxed pr-4">
+                    <p className="text-on-surface/60 text-sm leading-relaxed pr-4">
                         Connecting discerning palates with the Pakistani's most exceptional
                                     culinary experiences.
                     </p>
@@ -24,7 +24,7 @@ export default function Footer() {
                             section.title
                         }
                         className="flex flex-col gap-4">
-                        <h4 className="text-xs font-medium tracking-widest text-primary uppercase">
+                        <h4 className="text-xs font-medium tracking-widest text-on-surface uppercase">
                             {
                             section.title
                         } </h4>
@@ -37,7 +37,7 @@ export default function Footer() {
                                 to={
                                     link.path
                                 }
-                                className="text-sm text-black/55 hover:text-secondary transition-colors">
+                                className="text-sm text-on-surface/60 hover:text-secondary transition-colors">
                                 {
                                 link.label
                             } </Link>
@@ -48,11 +48,11 @@ export default function Footer() {
 
                 {/* Contact */}
                 <div className="flex flex-col gap-4">
-                    <h4 className="text-xs font-medium tracking-widest text-primary uppercase">
+                    <h4 className="text-xs font-medium tracking-widest text-on-surface uppercase">
                         CONTACT
                     </h4>
 
-                    <p className="text-sm text-black/55">support@example.com</p>
+                    <p className="text-sm text-on-surface/60">support@example.com</p>
 
                     <div className="flex gap-4 mt-2">
                         {
@@ -62,7 +62,7 @@ export default function Footer() {
                         }, index) => (
                             <a key={index}
                                 href={href}
-                                className="text-black/55 hover:text-secondary transition-colors">
+                                className="text-on-surface/60 hover:text-secondary transition-colors">
                                 <Icon size={18}/>
                             </a>
                         ))
@@ -72,7 +72,7 @@ export default function Footer() {
 
             {/* Bottom Bar */}
             <div className="max-w-7xl mx-auto px-6 md:px-10 mt-16 pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="text-xs text-black/55">
+                <p className="text-xs text-on-surface/50">
                     © 2026 QuickDine. All rights reserved.
                 </p>
 
@@ -85,7 +85,7 @@ export default function Footer() {
                             to={
                                 link.path
                             }
-                            className="text-xs text-black/55 hover:text-secondary">
+                            className="text-xs text-on-surface/50 hover:text-secondary">
                             {
                             link.label
                         } </Link>
@@ -95,3 +95,4 @@ export default function Footer() {
         </footer>
     );
 }
+

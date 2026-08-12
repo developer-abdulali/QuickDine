@@ -128,12 +128,12 @@ export default function Search() {
   ];
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col pt-20">
+    <div className="min-h-screen bg-surface flex flex-col pt-20 transition-colors">
       <Navbar />
       <AuthModal />
 
       {/* Sub-header / Search inputs */}
-      <div className="bg-white border-b border-outline-variant/10 py-4 z-10 sticky top-16 shadow-sm">
+      <div className="bg-surface-container-lowest border-b border-outline-variant/20 py-4 z-10 sticky top-16 shadow-sm text-on-surface transition-colors">
         <div className="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row gap-4 items-center justify-between">
           <form
             onSubmit={handleTextSubmit}
@@ -142,32 +142,32 @@ export default function Search() {
             <div className="relative grow sm:grow-0 min-w-[200px]">
               <SearchIcon
                 size={16}
-                className="absolute left-2.5 top-2 text-black/55/70"
+                className="absolute left-2.5 top-2 text-on-surface/50"
               />
               <input
                 type="text"
                 placeholder="Search cuisine or name..."
                 value={tempSearch}
                 onChange={(e) => setTempSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-xs border border-outline-variant/40 rounded-md focus:border-secondary focus:outline-none bg-surface-container-low/30"
+                className="w-full pl-9 pr-3 py-2 text-xs border border-outline-variant/40 rounded-md focus:border-secondary focus:outline-none bg-surface-container-low text-on-surface"
               />
             </div>
             <div className="relative grow sm:grow-0 min-w-[200px]">
               <MapPin
                 size={16}
-                className="absolute left-2.5 top-2 text-black/55/70"
+                className="absolute left-2.5 top-2 text-on-surface/50"
               />
               <input
                 type="text"
                 placeholder="Location..."
                 value={tempLocation}
                 onChange={(e) => setTempLocation(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-xs border border-outline-variant/40 rounded-md focus:border-secondary focus:outline-none bg-surface-container-low/30"
+                className="w-full pl-9 pr-3 py-2 text-xs border border-outline-variant/40 rounded-md focus:border-secondary focus:outline-none bg-surface-container-low text-on-surface"
               />
             </div>
             <button
               type="submit"
-              className="bg-primary hover:bg-secondary text-white text-[10px] font-medium tracking-wider uppercase px-5 py-2.5 rounded-md cursor-pointer transition-colors"
+              className="bg-primary hover:bg-secondary text-on-primary hover:text-white text-[10px] font-medium tracking-wider uppercase px-5 py-2.5 rounded-md cursor-pointer transition-colors"
             >
               UPDATE
             </button>
@@ -176,7 +176,7 @@ export default function Search() {
           <div className="flex gap-3 w-full md:w-auto justify-end">
             <button
               onClick={() => setShowMobileFilters(true)}
-              className="md:hidden flex items-center gap-1.5 border border-outline-variant/50 hover:border-primary text-xs font-medium px-4 py-2 bg-white cursor-pointer transition-colors"
+              className="md:hidden flex items-center gap-1.5 border border-outline-variant/50 hover:border-secondary text-xs font-medium px-4 py-2 bg-surface-container-lowest text-on-surface cursor-pointer transition-colors"
             >
               <SlidersHorizontal size={14} />
               <span>Filters</span>
@@ -190,12 +190,12 @@ export default function Search() {
         <aside className="hidden md:block w-64 shrink-0">
           <div className="sticky top-44 space-y-8">
             <div className="flex justify-between items-center pb-4 border-b border-outline-variant/10">
-              <h3 className="font-display text-lg font-medium text-primary">
+              <h3 className="font-display text-lg font-medium text-on-surface">
                 Filters
               </h3>
               <button
                 onClick={clearAllFilters}
-                className="text-[10px] font-medium text-secondary hover:text-primary tracking-wider uppercase cursor-pointer"
+                className="text-[10px] font-medium text-secondary hover:text-on-surface tracking-wider uppercase cursor-pointer"
               >
                 Clear All
               </button>
@@ -203,7 +203,7 @@ export default function Search() {
 
             {/* Cuisine Filter */}
             <div className="space-y-3">
-              <h4 className="text-xs font-medium text-primary tracking-wider uppercase">
+              <h4 className="text-xs font-medium text-on-surface tracking-wider uppercase">
                 Cuisine
               </h4>
               <div className="space-y-2">
@@ -213,13 +213,13 @@ export default function Search() {
                     <button
                       key={c}
                       onClick={() => handleCuisineToggle(c)}
-                      className="w-full flex items-center justify-between text-left text-xs text-black/55 hover:text-primary transition-colors cursor-pointer py-1"
+                      className="w-full flex items-center justify-between text-left text-xs text-on-surface/60 hover:text-on-surface transition-colors cursor-pointer py-1"
                     >
                       <span>{c}</span>
                       <div
                         className={`w-4 h-4 border rounded-sm flex items-center justify-center transition-colors ${
                           active
-                            ? "bg-primary border-primary text-white"
+                            ? "bg-secondary border-secondary text-white"
                             : "border-outline-variant"
                         }`}
                       >
@@ -233,7 +233,7 @@ export default function Search() {
 
             {/* Price Range Filter */}
             <div className="space-y-3">
-              <h4 className="text-xs text-primary tracking-wider uppercase">
+              <h4 className="text-xs font-medium text-on-surface tracking-wider uppercase">
                 Price Range
               </h4>
               <div className="grid grid-cols-4 gap-1.5">
@@ -245,8 +245,8 @@ export default function Search() {
                       onClick={() => handlePriceToggle(p)}
                       className={`py-2 text-center text-xs transition-colors cursor-pointer border rounded-sm ${
                         active
-                          ? "bg-primary border-primary text-white"
-                          : "border-outline-variant/50 text-on-surface hover:border-primary"
+                          ? "bg-secondary border-secondary text-white font-medium"
+                          : "border-outline-variant/50 text-on-surface hover:border-secondary bg-surface-container-low"
                       }`}
                     >
                       {p}
@@ -261,24 +261,24 @@ export default function Search() {
         {/* Results Section */}
         <div className="flex-1 flex flex-col">
           <div className="flex justify-between items-center mb-8 pb-4 border-b border-outline-variant/10">
-            <p className="text-sm text-black/55">
+            <p className="text-sm text-on-surface/60">
               {restaurants.length}{" "}
               {restaurants.length === 1 ? "Restaurant" : "Restaurants"}{" "}
               Available
             </p>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs text-black/55 tracking-wider uppercase">
+              <span className="text-xs text-on-surface/60 tracking-wider uppercase">
                 SORT BY:
               </span>
               <select
                 value={sortVal}
                 onChange={(e) => handleSortChange(e.target.value)}
-                className="text-xs bg-transparent border border-outline-variant/30 px-3 py-1.5 focus:outline-none cursor-pointer rounded-sm"
+                className="text-xs bg-surface-container-lowest text-on-surface border border-outline-variant/30 px-3 py-1.5 focus:outline-none cursor-pointer rounded-sm"
               >
-                <option value="">Default (Newest)</option>
-                <option value="price_low">Price: Low to High</option>
-                <option value="price_high">Price: High to Low</option>
+                <option value="" className="bg-surface-container-lowest text-on-surface">Default (Newest)</option>
+                <option value="price_low" className="bg-surface-container-lowest text-on-surface">Price: Low to High</option>
+                <option value="price_high" className="bg-surface-container-lowest text-on-surface">Price: High to Low</option>
               </select>
             </div>
           </div>
@@ -290,16 +290,16 @@ export default function Search() {
           ) : restaurants.length === 0 ? (
             <div className="grow flex flex-col items-center justify-center py-24 text-center">
               <SearchXIcon size={36} className="text-outline-variant mb-4" />
-              <h3 className="font-display text-xl font-medium mb-2">
+              <h3 className="font-display text-xl font-medium mb-2 text-on-surface">
                 No Restaurants Found
               </h3>
-              <p className="text-xs text-black/50 max-w-sm mb-6">
+              <p className="text-xs text-on-surface/60 max-w-sm mb-6">
                 We couldn't find any premium establishments matching your search
                 query. Try widening your filters.
               </p>
               <button
                 onClick={clearAllFilters}
-                className="bg-primary hover:bg-secondary text-white text-xs tracking-widest uppercase px-6 py-3 transition-colors cursor-pointer"
+                className="bg-primary hover:bg-secondary text-on-primary hover:text-white text-xs tracking-widest uppercase px-6 py-3 transition-colors cursor-pointer rounded"
               >
                 CLEAR ALL FILTERS
               </button>
@@ -322,16 +322,16 @@ export default function Search() {
 
       {/* Mobile Filters Drawer Modal */}
       {showMobileFilters && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-sm md:hidden animate-in fade-in duration-200">
-          <div className="w-80 bg-white h-full p-6 flex flex-col justify-between shadow-2xl animate-in slide-in-from-right duration-300">
+        <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm md:hidden animate-in fade-in duration-200">
+          <div className="w-80 bg-surface-container-lowest text-on-surface h-full p-6 flex flex-col justify-between shadow-2xl animate-in slide-in-from-right duration-300">
             <div>
               <div className="flex justify-between items-center pb-4 border-b border-outline-variant/10">
-                <h3 className="font-display text-lg font-medium text-primary">
+                <h3 className="font-display text-lg font-medium text-on-surface">
                   Filters
                 </h3>
                 <button
                   onClick={() => setShowMobileFilters(false)}
-                  className="p-1 text-black/55 hover:text-primary transition-colors cursor-pointer"
+                  className="p-1 text-on-surface/60 hover:text-on-surface transition-colors cursor-pointer"
                 >
                   <X size={20} />
                 </button>
@@ -339,7 +339,7 @@ export default function Search() {
 
               {/* Cuisines */}
               <div className="py-6 space-y-3">
-                <h4 className="text-xs text-primary tracking-wider uppercase">
+                <h4 className="text-xs text-on-surface tracking-wider uppercase font-medium">
                   Cuisine
                 </h4>
                 <div className="space-y-2">
@@ -349,13 +349,13 @@ export default function Search() {
                       <button
                         key={c}
                         onClick={() => handleCuisineToggle(c)}
-                        className="w-full flex items-center justify-between text-left text-xs text-black/55 hover:text-primary py-1 cursor-pointer"
+                        className="w-full flex items-center justify-between text-left text-xs text-on-surface/60 hover:text-on-surface py-1 cursor-pointer"
                       >
                         <span>{c}</span>
                         <div
                           className={`w-4 h-4 border rounded-sm flex items-center justify-center ${
                             active
-                              ? "bg-primary border-primary text-white"
+                              ? "bg-secondary border-secondary text-white"
                               : "border-outline-variant"
                           }`}
                         >
@@ -369,7 +369,7 @@ export default function Search() {
 
               {/* Prices */}
               <div className="py-4 space-y-3 border-t border-outline-variant/10">
-                <h4 className="text-xs font-medium text-primary tracking-wider uppercase">
+                <h4 className="text-xs font-medium text-on-surface tracking-wider uppercase">
                   Price Range
                 </h4>
                 <div className="grid grid-cols-4 gap-1.5">
@@ -381,8 +381,8 @@ export default function Search() {
                         onClick={() => handlePriceToggle(p)}
                         className={`py-2 text-center text-xs font-medium transition-colors cursor-pointer border rounded-sm ${
                           active
-                            ? "bg-primary border-primary text-white"
-                            : "border-outline-variant/50 text-on-surface hover:border-primary"
+                            ? "bg-secondary border-secondary text-white"
+                            : "border-outline-variant/50 text-on-surface hover:border-secondary bg-surface-container-low"
                         }`}
                       >
                         {p}
@@ -397,13 +397,13 @@ export default function Search() {
             <div className="border-t border-outline-variant/10 pt-4 flex gap-3">
               <button
                 onClick={clearAllFilters}
-                className="flex-1 border border-outline-variant/50 py-3 text-xs font-medium tracking-widest uppercase cursor-pointer"
+                className="flex-1 border border-outline-variant/50 text-on-surface py-3 text-xs font-medium tracking-widest uppercase cursor-pointer"
               >
                 CLEAR
               </button>
               <button
                 onClick={() => setShowMobileFilters(false)}
-                className="flex-1 bg-primary text-white py-3 text-xs font-medium tracking-widest uppercase hover:bg-secondary cursor-pointer"
+                className="flex-1 bg-primary text-on-primary py-3 text-xs font-medium tracking-widest uppercase hover:bg-secondary hover:text-white cursor-pointer rounded"
               >
                 APPLY
               </button>
@@ -416,3 +416,4 @@ export default function Search() {
     </div>
   );
 }
+

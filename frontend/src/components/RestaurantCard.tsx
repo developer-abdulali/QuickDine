@@ -33,7 +33,7 @@ export default function RestaurantCard({restaurant} : RestaurantCardProps) {
     };
 
     return (
-        <div className="group relative bg-white border border-outline-variant/10 card-hover-effect overflow-hidden rounded-md flex flex-col h-full">
+        <div className="group relative bg-surface-container-lowest border border-outline-variant/20 card-hover-effect overflow-hidden rounded-md flex flex-col h-full text-on-surface transition-colors">
             {/* Image & Badges */}
             <Link to={
                     `/restaurant/${
@@ -49,7 +49,7 @@ export default function RestaurantCard({restaurant} : RestaurantCardProps) {
                     }
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"/>
-                <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
 
                 {/* Exclusive & Featured Badges */}
                 <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
@@ -78,15 +78,15 @@ export default function RestaurantCard({restaurant} : RestaurantCardProps) {
                             restaurant.cuisine
                         }</span>
                         <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] font-medium text-black/55">
+                            <span className="text-[10px] font-medium text-on-surface/60">
                                 {
                                 restaurant.priceRange
                             }</span>
-                            <span className="text-black/55/30 text-xs">•</span>
+                            <span className="text-on-surface/30 text-xs">•</span>
                             <div className="flex items-center gap-0.5 text-secondary">
                                 <Star size={12}
                                     fill="currentColor"/>
-                                <span className="text-xs font-medium text-primary">
+                                <span className="text-xs font-medium text-on-surface">
                                     {
                                     dummyRating.toFixed(1)
                                 }</span>
@@ -101,16 +101,16 @@ export default function RestaurantCard({restaurant} : RestaurantCardProps) {
                             }`
                         }
                         className="block mb-2">
-                        <h3 className="font-display text-lg font-semibold text-primary group-hover:text-secondary transition-colors line-clamp-1">
+                        <h3 className="font-display text-lg font-semibold text-on-surface group-hover:text-secondary transition-colors line-clamp-1">
                             {
                             restaurant.name
                         } </h3>
                     </Link>
 
                     {/* Location */}
-                    <p className="text-xs text-black/55 mb-4 flex items-center gap-1">
+                    <p className="text-xs text-on-surface/60 mb-4 flex items-center gap-1">
                         <MapPinIcon size={14}
-                            className="text-black/55/70"/> {
+                            className="text-on-surface/50"/> {
                         restaurant.location
                     } </p>
                 </div>
@@ -118,7 +118,7 @@ export default function RestaurantCard({restaurant} : RestaurantCardProps) {
                 {/* Quick Slots */}
                 <div>
                     <div className="border-t border-outline-variant/10 my-3"></div>
-                    <span className="block text-[9px] font-medium text-black/55 tracking-wider uppercase mb-2">QUICK RESERVATION</span>
+                    <span className="block text-[9px] font-medium text-on-surface/60 tracking-wider uppercase mb-2">QUICK RESERVATION</span>
                     <div className="flex flex-wrap gap-1.5">
                         {
                         restaurant.availableSlots.filter((slot) => {
@@ -132,7 +132,7 @@ export default function RestaurantCard({restaurant} : RestaurantCardProps) {
                                 onClick={
                                     (e) => handleSlotClick(e, slot)
                                 }
-                                className="text-[10px] font-medium border border-outline-variant/60 hover:border-primary px-3 py-1.5 transition-colors cursor-pointer text-black/55 hover:text-primary bg-surface">
+                                className="text-[10px] font-medium border border-outline-variant/60 hover:border-secondary px-3 py-1.5 transition-colors cursor-pointer text-on-surface/80 hover:text-secondary bg-surface-container-low">
                                 {slot} </button>
                         ))
                     }
@@ -150,3 +150,4 @@ export default function RestaurantCard({restaurant} : RestaurantCardProps) {
         </div>
     );
 }
+

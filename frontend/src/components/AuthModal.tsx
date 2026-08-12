@@ -57,16 +57,16 @@ export default function AuthModal() {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
             {/* Click outside to close */}
             <div className="absolute inset-0"
                 onClick={handleClose}></div>
 
             {/* Modal Container */}
-            <div className="relative w-full max-w-md bg-white border border-outline-variant/30 ambient-shadow rounded-lg overflow-hidden z-10 transition-soft transform scale-100 flex flex-col">
+            <div className="relative w-full max-w-md bg-surface-container-lowest border border-outline-variant/30 ambient-shadow rounded-lg overflow-hidden z-10 transition-soft transform scale-100 flex flex-col text-on-surface">
                 {/* Close Button */}
                 <button onClick={handleClose}
-                    className="absolute top-4 right-4 text-black/55 hover:text-primary transition-colors cursor-pointer"
+                    className="absolute top-4 right-4 text-on-surface/60 hover:text-on-surface transition-colors cursor-pointer"
                     aria-label="Close">
                     <X size={20}/>
                 </button>
@@ -78,7 +78,7 @@ export default function AuthModal() {
                         }
                         className={
                             `flex-1 py-5 text-center text-xs font-medium tracking-widest transition-soft cursor-pointer ${
-                                isLoginTab ? "text-primary border-b-2 border-primary bg-surface-container-lowest" : "text-black/55 hover:text-primary bg-surface-container-low/50"
+                                isLoginTab ? "text-secondary border-b-2 border-secondary bg-surface-container-lowest" : "text-on-surface/60 hover:text-on-surface bg-surface-container-low/50"
                             }`
                     }>
                         SIGN IN
@@ -88,7 +88,7 @@ export default function AuthModal() {
                         }
                         className={
                             `flex-1 py-5 text-center text-xs font-medium tracking-widest transition-soft cursor-pointer ${
-                                !isLoginTab ? "text-primary border-b-2 border-primary bg-surface-container-lowest" : "text-black/55 hover:text-primary bg-surface-container-low/50"
+                                !isLoginTab ? "text-secondary border-b-2 border-secondary bg-surface-container-lowest" : "text-on-surface/60 hover:text-on-surface bg-surface-container-low/50"
                             }`
                     }>
                         SIGN UP
@@ -100,10 +100,10 @@ export default function AuthModal() {
                     className="p-8 space-y-6 flex-1 flex flex-col justify-between">
                     <div>
                         <div className="text-center mb-8">
-                            <h2 className="font-display text-2xl font-medium text-primary tracking-tight">
+                            <h2 className="font-display text-2xl font-medium text-on-surface tracking-tight">
                                 Welcome to QuickDine
                             </h2>
-                            <p className="text-xs text-black/55 mt-2 leading-relaxed">
+                            <p className="text-xs text-on-surface/60 mt-2 leading-relaxed">
                                 Access your exclusive reservations and curated dining profile.
                             </p>
                         </div>
@@ -113,11 +113,11 @@ export default function AuthModal() {
                             {
                             !isLoginTab && (
                                 <div className="space-y-1">
-                                    <label className="block text-left text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                                    <label className="block text-left text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                                         FULL NAME
                                     </label>
                                     <div className="relative">
-                                        <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-black/55">
+                                        <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-on-surface/50">
                                             <User size={16}/>
                                         </span>
                                         <input type="text"
@@ -129,7 +129,7 @@ export default function AuthModal() {
                                                 (e) => setName(e.target.value)
                                             }
                                             placeholder="Sarah Jenkins"
-                                            className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
+                                            className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent text-on-surface border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
                                     </div>
                                 </div>
                             )
@@ -137,11 +137,11 @@ export default function AuthModal() {
 
                             {/* Email Field */}
                             <div className="space-y-1">
-                                <label className="block text-left text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                                <label className="block text-left text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                                     EMAIL ADDRESS
                                 </label>
                                 <div className="relative">
-                                    <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-black/55">
+                                    <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-on-surface/50">
                                         <Mail size={16}/>
                                     </span>
                                     <input type="email" required
@@ -150,7 +150,7 @@ export default function AuthModal() {
                                             (e) => setEmail(e.target.value)
                                         }
                                         placeholder="you@example.com"
-                                        className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
+                                        className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent text-on-surface border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
                                 </div>
                             </div>
 
@@ -158,11 +158,11 @@ export default function AuthModal() {
                             {
                             !isLoginTab && (
                                 <div className="space-y-1">
-                                    <label className="block text-left text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                                    <label className="block text-left text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                                         PHONE NUMBER (OPTIONAL)
                                     </label>
                                     <div className="relative">
-                                        <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-black/55">
+                                        <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-on-surface/50">
                                             <Phone size={16}/>
                                         </span>
                                         <input type="tel"
@@ -171,7 +171,7 @@ export default function AuthModal() {
                                                 (e) => setPhone(e.target.value)
                                             }
                                             placeholder="+92 (300) 0000000"
-                                            className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
+                                            className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent text-on-surface border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
                                     </div>
                                 </div>
                             )
@@ -179,11 +179,11 @@ export default function AuthModal() {
 
                             {/* Password Field */}
                             <div className="space-y-1">
-                                <label className="block text-left text-[10px] font-medium text-black/55 tracking-wider uppercase">
+                                <label className="block text-left text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">
                                     PASSWORD
                                 </label>
                                 <div className="relative">
-                                    <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-black/55">
+                                    <span className="absolute inset-y-0 left-0 flex items-center pr-3 pointer-events-none text-on-surface/50">
                                         <Lock size={16}/>
                                     </span>
                                     <input type="password" required
@@ -192,7 +192,7 @@ export default function AuthModal() {
                                             (e) => setPassword(e.target.value)
                                         }
                                         placeholder="••••••••"
-                                        className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
+                                        className="w-full pl-7 pb-2 pt-1 text-sm bg-transparent text-on-surface border-b border-outline-variant/60 focus:border-secondary focus:outline-none transition-colors"/>
                                 </div>
                             </div>
 
@@ -206,7 +206,7 @@ export default function AuthModal() {
                                             (e) => setIsOwner(e.target.checked)
                                         }
                                         className="h-4 w-4 accent-secondary rounded border-outline-variant/60 cursor-pointer"/>
-                                    <label htmlFor="isOwner" className="text-xs text-black/55 select-none cursor-pointer">
+                                    <label htmlFor="isOwner" className="text-xs text-on-surface/70 select-none cursor-pointer">
                                         I am a Restaurant Owner / Manager
                                     </label>
                                 </div>
@@ -218,14 +218,14 @@ export default function AuthModal() {
                     <div className="mt-8">
                         <button type="submit"
                             disabled={formLoading}
-                            className="w-full bg-primary hover:bg-secondary text-white py-3.5 px-4 text-xs font-medium tracking-widest uppercase focus:outline-none transition-colors disabled:opacity-75 cursor-pointer">
+                            className="w-full bg-primary hover:bg-secondary text-on-primary hover:text-white py-3.5 px-4 text-xs font-medium tracking-widest uppercase focus:outline-none transition-colors disabled:opacity-75 cursor-pointer">
                             {
                             formLoading ? "PROCESSING..." : isLoginTab ? "LOGIN" : "CREATE ACCOUNT"
                         } </button>
 
-                        <p className="text-center text-[11px] text-black/55/80 mt-4 leading-relaxed">
+                        <p className="text-center text-[11px] text-on-surface/50 mt-4 leading-relaxed">
                             By signing in, you agree to our{" "}
-                            <a href="#" className="underline hover:text-primary">
+                            <a href="#" className="underline hover:text-secondary">
                                 Terms of Service
                             </a>
                             .
@@ -236,3 +236,4 @@ export default function AuthModal() {
         </div>
     );
 }
+

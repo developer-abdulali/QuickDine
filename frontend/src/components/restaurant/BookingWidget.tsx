@@ -33,35 +33,35 @@ export default function BookingWidget({
 
 
     return (
-        <div className="bg-white border border-outline-variant/20 p-6 rounded-md shadow-sm text-left">
-            <h3 className="font-display text-lg font-medium text-primary mb-4 pb-3 border-b border-outline-variant/10">Book a Table</h3>
+        <div className="bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-md shadow-sm text-left text-on-surface transition-colors">
+            <h3 className="font-display text-lg font-medium text-on-surface mb-4 pb-3 border-b border-outline-variant/10">Book a Table</h3>
 
             <div className="space-y-4">
                 {/* Guests count */}
                 <div className="space-y-1">
-                    <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">PARTY SIZE</label>
+                    <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">PARTY SIZE</label>
                     <div className="relative">
-                        <Users className="absolute left-3 top-3 text-black/55"
+                        <Users className="absolute left-3 top-3 text-on-surface/50"
                             size={16}/>
                         <select value={selectedGuests}
                             onChange={
                                 (e) => setSelectedGuests(e.target.value)
                             }
-                            className="w-full bg-surface-container-low/30 pl-9 pr-3 py-2.5 text-xs border border-outline-variant/40 focus:border-secondary focus:outline-none rounded-md cursor-pointer">
-                            <option value="1">1 Guest</option>
-                            <option value="2">2 Guests</option>
-                            <option value="4">4 Guests</option>
-                            <option value="6">6 Guests</option>
-                            <option value="8">8 Guests</option>
+                            className="w-full bg-surface-container-low text-on-surface pl-9 pr-3 py-2.5 text-xs border border-outline-variant/40 focus:border-secondary focus:outline-none rounded-md cursor-pointer">
+                            <option value="1" className="bg-surface-container-lowest text-on-surface">1 Guest</option>
+                            <option value="2" className="bg-surface-container-lowest text-on-surface">2 Guests</option>
+                            <option value="4" className="bg-surface-container-lowest text-on-surface">4 Guests</option>
+                            <option value="6" className="bg-surface-container-lowest text-on-surface">6 Guests</option>
+                            <option value="8" className="bg-surface-container-lowest text-on-surface">8 Guests</option>
                         </select>
                     </div>
                 </div>
 
                 {/* Date */}
                 <div className="space-y-1">
-                    <label className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">DATE</label>
+                    <label className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">DATE</label>
                     <div className="relative">
-                        <Calendar className="absolute left-3 top-3 text-black/55"
+                        <Calendar className="absolute left-3 top-3 text-on-surface/50"
                             size={16}/>
                         <input type="date"
                             value={selectedDate}
@@ -71,13 +71,13 @@ export default function BookingWidget({
                             min={
                                 new Date().toISOString().split("T")[0]
                             }
-                            className="w-full bg-surface-container-low/30 pl-9 pr-3 py-2.5 text-xs border border-outline-variant/40 focus:border-secondary focus:outline-none rounded-md cursor-pointer"/>
+                            className="w-full bg-surface-container-low text-on-surface pl-9 pr-3 py-2.5 text-xs border border-outline-variant/40 focus:border-secondary focus:outline-none rounded-md cursor-pointer"/>
                     </div>
                 </div>
 
                 {/* Time Slots Grid */}
                 <div className="space-y-2 pt-2">
-                    <span className="block text-[10px] font-medium text-black/55 tracking-wider uppercase">AVAILABLE TIMES</span>
+                    <span className="block text-[10px] font-medium text-on-surface/60 tracking-wider uppercase">AVAILABLE TIMES</span>
                     <div className="grid grid-cols-3 gap-2">
                         {
                         loadingSlots ? (
@@ -112,7 +112,7 @@ export default function BookingWidget({
                                     }
                                     className={
                                         `py-2 px-1 text-center text-[10px] font-medium tracking-wider uppercase border transition-all rounded-sm ${
-                                            isSelected ? "bg-secondary border-secondary text-white shadow-sm cursor-pointer" : isFull ? "bg-black/5 border-outline-variant/10 text-black/25 cursor-not-allowed opacity-50" : "border-outline-variant/40 text-black/55 hover:border-primary hover:text-primary cursor-pointer"
+                                            isSelected ? "bg-secondary border-secondary text-white shadow-sm cursor-pointer" : isFull ? "bg-surface-container-low border-outline-variant/10 text-on-surface/30 cursor-not-allowed opacity-50" : "border-outline-variant/40 text-on-surface/80 hover:border-secondary hover:text-secondary cursor-pointer bg-surface-container-low"
                                         }`
                                 }>
                                     {slot}
@@ -126,15 +126,16 @@ export default function BookingWidget({
 
                 {/* Action Button */}
                 <button onClick={handleReserveClick}
-                    className="w-full bg-primary hover:bg-secondary text-on-primary py-4 mt-6 text-xs font-medium tracking-widest uppercase transition-colors cursor-pointer">
+                    className="w-full bg-primary hover:bg-secondary text-on-primary hover:text-white py-4 mt-6 text-xs font-medium tracking-widest uppercase transition-colors cursor-pointer rounded">
                     {
                     isAuthenticated ? "RESERVE NOW" : "LOGIN TO RESERVE"
                 } </button>
 
-                <p className="text-center text-[10px] text-black/55 mt-3 leading-relaxed">
+                <p className="text-center text-[10px] text-on-surface/50 mt-3 leading-relaxed">
                     No reservation fee. Cancel for free up to 24 hours prior.
                 </p>
             </div>
         </div>
     );
 }
+

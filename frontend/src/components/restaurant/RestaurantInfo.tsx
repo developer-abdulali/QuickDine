@@ -11,14 +11,14 @@ export default function RestaurantInfo({restaurant} : RestaurantInfoProps) {
 
 
     return (
-        <div className="space-y-12 text-left">
+        <div className="space-y-12 text-left text-on-surface">
             {/* Info Ribbon */}
             <div className="grid grid-cols-3 gap-4 py-6 border-y border-outline-variant/10">
                 <div className="text-center border-r border-outline-variant/10 px-2">
                     <ChefHat className="text-secondary mx-auto mb-2"
                         size={20}/>
-                    <span className="block text-[9px] tracking-wider text-black/55 uppercase">CHEF</span>
-                    <span className="text-xs text-primary mt-1 block">
+                    <span className="block text-[9px] tracking-wider text-on-surface/60 uppercase font-medium">CHEF</span>
+                    <span className="text-xs text-on-surface font-medium mt-1 block">
                         {
                         restaurant.chef
                     }</span>
@@ -26,8 +26,8 @@ export default function RestaurantInfo({restaurant} : RestaurantInfoProps) {
                 <div className="text-center border-r border-outline-variant/10 px-2">
                     <Utensils className="text-secondary mx-auto mb-2"
                         size={20}/>
-                    <span className="block text-[9px] tracking-wider text-black/55 uppercase">CUISINE</span>
-                    <span className="text-xs text-primary mt-1 block">
+                    <span className="block text-[9px] tracking-wider text-on-surface/60 uppercase font-medium">CUISINE</span>
+                    <span className="text-xs text-on-surface font-medium mt-1 block">
                         {
                         restaurant.cuisine
                     }</span>
@@ -35,19 +35,19 @@ export default function RestaurantInfo({restaurant} : RestaurantInfoProps) {
                 <div className="text-center px-2">
                     <Clock className="text-secondary mx-auto mb-2"
                         size={20}/>
-                    <span className="block text-[9px] tracking-wider text-black/55 uppercase">OPENING</span>
-                    <span className="text-xs text-primary mt-1 block">5:00 PM - 11:00 PM</span>
+                    <span className="block text-[9px] tracking-wider text-on-surface/60 uppercase font-medium">OPENING</span>
+                    <span className="text-xs text-on-surface font-medium mt-1 block">5:00 PM - 11:00 PM</span>
                 </div>
             </div>
 
             {/* About Section */}
             <section className="space-y-4">
-                <h3 className="font-display text-xl font-semibold text-primary">About the Dining Room</h3>
-                <p className="text-sm text-black/55 leading-relaxed">
+                <h3 className="font-display text-xl font-semibold text-on-surface">About the Dining Room</h3>
+                <p className="text-sm text-on-surface/60 leading-relaxed">
                     {
                     restaurant.description
                 }</p>
-                <div className="flex items-start gap-2 text-sm text-black/55 pt-2">
+                <div className="flex items-start gap-2 text-sm text-on-surface/60 pt-2">
                     <MapPin size={16}
                         className="text-secondary shrink-0 mt-0.5"/>
                     <span>{
@@ -58,3 +58,4 @@ export default function RestaurantInfo({restaurant} : RestaurantInfoProps) {
         </div>
     );
 }
+
